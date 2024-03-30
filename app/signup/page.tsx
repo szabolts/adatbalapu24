@@ -2,6 +2,7 @@ import Link from "next/link";
 import SignupForm from "./signup-form";
 import Image from "next/image";
 import signup from "@/public/signup.jpg";
+import { SignupFormDemo } from "./fancy-signup-form";
 
 export default function Signup() {
   return (
@@ -17,7 +18,7 @@ export default function Signup() {
               Enter your credentials below to create your account
             </p>
           </div>
-          <SignupForm />
+          <SignupFormDemo />
           <p className="px-8 text-center text-sm text-muted-foreground">
             By clicking continue, you agree to our{" "}
             <Link

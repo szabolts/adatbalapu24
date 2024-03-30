@@ -1,3 +1,4 @@
+
 import NextAuth from 'next-auth';
 import { authConfig } from './auth.config';
 import Credentials from 'next-auth/providers/credentials';
@@ -19,7 +20,7 @@ async function getUser(email: string): Promise<User | undefined>   {
     });
 
     const user = await connection.execute(
-      `SELECT * FROM USERS WHERE EMAIL = :email`,
+      `SELECT * FROM Felhasznalo WHERE EMAIL = :email`,
         [email],
     );
     console.log("------user: ",user.rows[0]);
@@ -44,14 +45,16 @@ export const { auth, signIn, signOut } = NextAuth({
           const { email, password } = parsedCredentials.data;
           const user = await getUser(email);
           console.log("USERACT:" ,user)
-          console.log("------pw:",password, user?.PASSWORD)
+          console.log("------pw:",password, user?.JELSZO)
           if (!user) return null;
 
           const formattedUser = {
-            id: user.ID,
+            id: user.FELHASZNALOID,
+            username: user.FELHASZNALONEV,
+            firstname: user.VEZETEKNEV,
+            lastname: user.KERESZTNEV,
             email: user.EMAIL,
-            password: user.PASSWORD,
-            name: user.NAME
+            password: user.JELSZO,
           };
 
           const passwordsMatch = await bcrypt.compare(password, formattedUser.password);

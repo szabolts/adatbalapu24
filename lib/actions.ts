@@ -13,7 +13,9 @@ const mypw = "aesdeaesde123"
 
 const UserSchema = z
   .object({
-    name: z.string(),
+    firstname: z.string(),
+    lastname: z.string(),
+    username: z.string(),
     email: z.string().email(),
     password: z.string().min(6),
     password2: z.string().min(6),
@@ -24,8 +26,10 @@ const UserSchema = z
   });
 
   export async function createUser(formData: FormData) {
-    const { name, email, password, password2 } = UserSchema.parse({
-      name: formData.get("name"),
+    const { firstname, lastname, username, email, password, password2 } = UserSchema.parse({
+      firstname: formData.get("firstname"),
+      lastname: formData.get("lastname"),
+      username: formData.get("username"),
       email: formData.get("email"),
       password: formData.get("password"),
       password2: formData.get("password2"),
@@ -42,10 +46,10 @@ const UserSchema = z
             connectString : "159.69.117.79:1521/PODB"
         });
 
-       
+     const user = "user";  
      const result = await connection.execute(
-        `INSERT INTO USERS (ID, NAME, EMAIL, PASSWORD) VALUES (:id, :name, :email, :password)`,
-        [cuid(), name, email, bPassword],
+        `INSERT INTO FELHASZNALO (FelhasznaloID, FELHASZNALONEV, VEZETEKNEV, KERESZTNEV, EMAIL, Jelszo, Role) VALUES (:id, :username, :firstname, :lastname, :email, :password, :role)`,
+        [cuid(), username, firstname, lastname, email, bPassword, user],
         { autoCommit: true }
       );
       console.log("--------------Result",result);

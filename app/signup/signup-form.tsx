@@ -1,7 +1,7 @@
 "use client"
 import { Button } from "@nextui-org/react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input2";
+import { Label } from "@/components/ui/label2";
 import { createUser } from "@/lib/actions"; 
 
 export default function SignupForm() {

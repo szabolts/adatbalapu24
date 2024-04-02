@@ -26,10 +26,11 @@ export async function Feed() {
     }
     return arr;
   };
+
   const shuffleKepek = shuffle(kepek);
   return (
     <BentoGrid className="max-w-4xl mx-auto">
-      {shuffleKepek.map((kep: Kep, i: number) => (
+      {kepek.map((kep: Kep, i: number) => (
         <BentoGridItem
           key={i}
           // title={item.title}

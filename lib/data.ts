@@ -36,7 +36,9 @@ export async function fetchKepek() {
 
     const result = await connection.execute(
         `SELECT *
-         FROM KEP`,
+         FROM KEP
+         ORDER BY KEPID
+         DESC`,
         [],  
     );
     // console.log(result.rows);

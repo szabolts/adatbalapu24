@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label2";
 import { useFormState, useFormStatus } from "react-dom";
 import { authenticate } from "@/lib/actions";
 
+
 export default function SignupForm() {
   
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);

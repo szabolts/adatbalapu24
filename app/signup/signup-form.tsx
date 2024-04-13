@@ -9,7 +9,6 @@ import { Router, useRouter } from "next/router";
 
 
 
-
 const SignupForm = () => {
   const router = useRouter();
 

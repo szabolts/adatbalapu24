@@ -87,14 +87,16 @@ export async function createUser(formData: FormData) {
     console.log("--------------Result", result);
     await connection.close();
     
-    console.log("Succesfully created user");
-    return { success: true };
+    if (!result) {
+      return { error: "Gatya"}
+    }
 
   } catch (error) {
     console.error(error);
     return { error: "asd"}
-
   }
+  revalidatePath("/");
+  redirect("/login");
 }
 
 

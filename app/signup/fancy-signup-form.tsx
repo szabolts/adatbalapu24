@@ -3,10 +3,20 @@ import React from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { createUser } from "@/lib/actions"; 
+import { createUser } from "@/lib/actions";
+import { toast } from 'react-hot-toast'; 
 
 export function SignupFormDemo() {
   
+  async function handleCreateUser(formData: FormData) {
+    const result = await createUser(formData);
+    if (result?.error) {
+      toast.error(result.error);
+    }else{
+      toast.success("szopjal ki sikerult");
+    }
+  }
+
   return (
     <div className="">
     
@@ -29,7 +39,7 @@ export function SignupFormDemo() {
     inset: 0;
     border-radius: inherit;
     filter: drop-shadow(0 0 10px var(--line-color)); */}
-      <form className="my-2" action={createUser}>
+      <form className="my-2" action={handleCreateUser}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
             <Label htmlFor="firstname">First name</Label>

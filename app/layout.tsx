@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/header";
 import { Providers } from "./providers";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${inter.className} min-h-screen`}>
+      <Toaster/>
+
         <Providers>
           <Header />
           <div className="container mx-auto p-0 min-h-[calc(100vh-65px)]">

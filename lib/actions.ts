@@ -8,6 +8,8 @@ import NextAuth, { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { stat, mkdir, writeFile } from "fs/promises";
 import path from 'path';
+import { useRouter } from "@/node_modules/next/router";
+import { useEffect } from "react";
 
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
 const ACCEPTED_IMAGE_MIME_TYPES = [
@@ -84,13 +86,18 @@ export async function createUser(formData: FormData) {
     );
     console.log("--------------Result", result);
     await connection.close();
+    
     console.log("Succesfully created user");
+    return { success: true };
+
   } catch (error) {
     console.error(error);
-    return { message: "Hiba történt a regisztráció során." };
+    return { error: "asd"}
+
   }
-  redirect("/login");
 }
+
+
 
 const UploadSchema = z.object({
   image: z

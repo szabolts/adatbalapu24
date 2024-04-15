@@ -17,7 +17,8 @@ import { Kep } from "@/lib/types";
 import { fetchKepek } from "@/lib/data";
 
 export async function Feed() {
-  const kepek = await fetchKepek();
+  const kepek: any = await fetchKepek();
+  // console.log(kepek);
   const shuffle = ([...arr]) => {
     let m = arr.length;
     while (m) {
@@ -39,7 +40,7 @@ export async function Feed() {
           <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl ">
           <Image
                 alt={kep.CIM}
-                width={600}
+                width={500}
                 height={500}
                 src={kep.FAJL_ELERESI_UTVONAL}
                 className="rounded-lg"

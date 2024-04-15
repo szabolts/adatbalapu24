@@ -1,6 +1,7 @@
 
 import oracledb from 'oracledb';
 import { User } from './types';
+import { auth } from '@/auth';
 
 
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
@@ -23,6 +24,30 @@ export async function fetchUsers() {
     );
 
     // console.log(result.rows);
+    await connection.close();
+    return result.rows as User[];
+}
+
+
+export async function fetchCurrentUser() {
+    const session = await auth();
+    const email = session?.user?.email
+
+    const connection = await oracledb.getConnection ({
+        user          : "test",
+        password      : mypw,
+        connectString : "159.69.117.79:1521/PODB"
+    });
+
+    
+    const result = await connection.execute(
+        `SELECT *
+         FROM FELHASZNALO
+         WHERE EMAIL = :email`,
+        [email],  
+    );
+
+    console.log(result.rows);
     await connection.close();
     return result.rows as User[];
 }

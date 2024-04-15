@@ -176,17 +176,19 @@ const UpdateShema = z
     lastname: z.string(),
     username: z.string(),
     email: z.string().email(),
+    password: z.string().min(6),
   })
 
 export async function updateProfile(formData: FormData) {
-  const { firstname, lastname, username, email } =
+  const { firstname, lastname, username, email, password } =
     UpdateShema.parse({
       firstname: formData.get("firstname"),
       lastname: formData.get("lastname"),
       username: formData.get("username"),
       email: formData.get("email"),
+      password: formData.get("password"),
     });
-
+  console.log("-----------------",email)
   try {
     // Felhasználó azonosítása
     const session = await auth();
@@ -194,7 +196,7 @@ export async function updateProfile(formData: FormData) {
     if (!userEmail) {
       throw new Error("User email is not available.");
     }
-    console.log(userEmail ,"ez az useremail")
+    console.log(userEmail ," ez az useremail")
 
     const connection = await oracledb.getConnection({
       user: "test",
@@ -203,23 +205,24 @@ export async function updateProfile(formData: FormData) {
     });
 
     // Felhasználó azonosítójának lekérése az e-mail cím alapján
-    const userIDResult = await connection.execute(
-      `SELECT FelhasznaloID FROM Felhasznalo WHERE EMAIL = :email`,
+    const userResult = await connection.execute(
+      `SELECT * FROM Felhasznalo WHERE EMAIL = :email`,
       [userEmail],
     );
-    const userId = userIDResult.rows[0].FelhasznaloID;
+    const userResultID = userResult.FELHASZNALOID;
+    console.log("---------------------asd: ",userResult.rows[0].FELHASZNALOID)
     console.log("---useridatUpdate title:", firstname)
     console.log("---useridatUpdate path:", lastname)
-
+    const userId = userResult.rows[0].FELHASZNALOID;
     // Felhasználó adatainak frissítése az adatbázisban
     const result = await connection.execute(
-      `UPDATE FELHASZNALO 
-       SET VEZETEKNEV = :lastname,
-           KERESZTNEV = :firstname,
-           FELHASZNALONEV = :username,
-           EMAIL = :email,
+      `UPDATE Felhasznalo
+       SET Felhasznalonev = :username,
+       Vezeteknev = :lastname,
+       Keresztnev = :firstname,
+       Email = :email,
        WHERE FelhasznaloID = :userId`,
-      [lastname, firstname, username, email],
+      [username, lastname, firstname, email, userId],
       { autoCommit: true }
     );
 
@@ -230,7 +233,11 @@ export async function updateProfile(formData: FormData) {
     console.error(error);
     return { message: "Hiba történt a felhasználói adatok frissítése során." };
   }
+  redirect("/");
+  
 }
+
+
 export async function logOut() {
   await signOut();
 }

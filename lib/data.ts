@@ -1,4 +1,7 @@
-const oracledb = require('oracledb');
+
+import oracledb from 'oracledb';
+import { User } from './types';
+
 
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
@@ -21,7 +24,7 @@ export async function fetchUsers() {
 
     // console.log(result.rows);
     await connection.close();
-    return result.rows;
+    return result.rows as User[];
 }
 
 export async function fetchKepek() {
@@ -41,6 +44,7 @@ export async function fetchKepek() {
     );
     // console.log(result.rows);
     await connection.close();
+
     return result.rows;
 }
 
@@ -51,6 +55,7 @@ export const getAdminByEmail = async (email: string) => {
         password      : mypw,
         connectString : "159.69.117.79:1521/PODB"
     });
+
 
     try {
         const user = await connection.execute(

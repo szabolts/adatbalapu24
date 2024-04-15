@@ -1,5 +1,3 @@
-
-
 const oracledb = require('oracledb');
 
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
@@ -44,7 +42,29 @@ export async function fetchKepek() {
     // console.log(result.rows);
     await connection.close();
     return result.rows;
+}
 
+export const getAdminByEmail = async (email: string) => {
+
+    const connection = await oracledb.getConnection ({
+        user          : "test",
+        password      : mypw,
+        connectString : "159.69.117.79:1521/PODB"
+    });
+
+    try {
+        const user = await connection.execute(
+            `SELECT * 
+            FROM FELHASZNALO
+            WHERE email = :email
+            AND Role = 'admin'`,
+            [email]
+        )
+        await connection.close();
+        return user.rows;
+    } catch {
+        return null;
+    }
 }
 
 

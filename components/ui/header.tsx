@@ -32,6 +32,9 @@ export default async function Header() {
           Upload
         </Button2>
         </div>
+
+     
+
         <LogInOutButton session={session} />
         {/* <div className="ml-auto flex items-center space-x-4">
           <Button2 href="/login" color="default" as={Link}>

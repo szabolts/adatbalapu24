@@ -8,6 +8,8 @@ import NextAuth, { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { stat, mkdir, writeFile } from "fs/promises";
 import path from 'path';
+import { User } from "./types";
+import { fetchUsers } from "./data";
 
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
 const ACCEPTED_IMAGE_MIME_TYPES = [
@@ -94,7 +96,7 @@ export async function createUser(formData: FormData) {
 
 const UploadSchema = z.object({
   image: z
-  .any(),
+    .any(),
   // .refine((files) => {
   //    return files?.[0]?.size <= MAX_UPLOAD_SIZE;
   // }, `Max image size is 3MB.`)
@@ -114,14 +116,14 @@ export async function upload(formData: FormData) {
   });
 
   const buffer = Buffer.from(await image.arrayBuffer());
-  const filename =  image.name.replaceAll(" ", "_");
+  const filename = image.name.replaceAll(" ", "_");
   try {
     await writeFile(
       path.join(process.cwd(), "/public/kepek/" + filename),
       buffer
     );
-    console.log("Upload: ", title, prompt, filename)    
-  }catch (error) {
+    console.log("Upload: ", title, prompt, filename)
+  } catch (error) {
     console.error(error);
     return { message: "Upload failed" };
   }
@@ -138,7 +140,7 @@ export async function upload(formData: FormData) {
 
     const userID = await connection.execute(
       `SELECT FelhasznaloID FROM Felhasznalo WHERE EMAIL = :email`,
-        [session?.user?.email],
+      [session?.user?.email],
     )
     console.log("---useridatUpdate title:", title)
     console.log("---useridatUpdate path:", path2)
@@ -160,6 +162,68 @@ export async function upload(formData: FormData) {
   redirect("/");
 }
 
+const UpdateShema = z
+  .object({
+    firstname: z.string(),
+    lastname: z.string(),
+    username: z.string(),
+    email: z.string().email(),
+  })
+
+export async function updateProfile(formData: FormData) {
+  const { firstname, lastname, username, email } =
+    UpdateShema.parse({
+      firstname: formData.get("firstname"),
+      lastname: formData.get("lastname"),
+      username: formData.get("username"),
+      email: formData.get("email"),
+    });
+
+  try {
+    // Felhasználó azonosítása
+    const session = await auth();
+    const userEmail = session?.user?.email; // Itt kell ellenőrizni a visszaadott objektumot
+    if (!userEmail) {
+      throw new Error("User email is not available.");
+    }
+    console.log(userEmail ,"ez az useremail")
+
+    const connection = await oracledb.getConnection({
+      user: "test",
+      password: mypw,
+      connectString: "159.69.117.79:1521/PODB",
+    });
+
+    // Felhasználó azonosítójának lekérése az e-mail cím alapján
+    const userIDResult = await connection.execute(
+      `SELECT FelhasznaloID FROM Felhasznalo WHERE EMAIL = :email`,
+      [userEmail],
+    );
+    const userId = userIDResult.rows[0].FelhasznaloID;
+    console.log("---useridatUpdate title:", firstname)
+    console.log("---useridatUpdate path:", lastname)
+
+    // Felhasználó adatainak frissítése az adatbázisban
+    const result = await connection.execute(
+      `UPDATE FELHASZNALO 
+       SET VEZETEKNEV = :lastname,
+           KERESZTNEV = :firstname,
+           FELHASZNALONEV = :username,
+           EMAIL = :email,
+       WHERE FelhasznaloID = :userId`,
+      [lastname, firstname, username, email],
+      { autoCommit: true }
+    );
+
+    console.log("Felhasználói adatok sikeresen frissítve:", result);
+    await connection.close();
+    console.log("Felhasználói adatok sikeresen frissítve.");
+  } catch (error) {
+    console.error(error);
+    return { message: "Hiba történt a felhasználói adatok frissítése során." };
+  }
+}
 export async function logOut() {
   await signOut();
 }
+

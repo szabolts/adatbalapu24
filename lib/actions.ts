@@ -11,6 +11,7 @@ import path from 'path';
 import { User } from "./types";
 import { fetchUsers } from "./data";
 
+
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
 const ACCEPTED_IMAGE_MIME_TYPES = [
   "image/jpeg",
@@ -86,13 +87,20 @@ export async function createUser(formData: FormData) {
     );
     console.log("--------------Result", result);
     await connection.close();
-    console.log("Succesfully created user");
+    
+    if (!result) {
+      return { error: "Gatya"}
+    }
+
   } catch (error) {
     console.error(error);
-    return { message: "Hiba történt a regisztráció során." };
+    return { error: "asd"}
   }
+  revalidatePath("/");
   redirect("/login");
 }
+
+
 
 const UploadSchema = z.object({
   image: z

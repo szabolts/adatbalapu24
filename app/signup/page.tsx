@@ -5,6 +5,7 @@ import signup from "@/public/signup.jpg";
 import { SignupFormDemo } from "./fancy-signup-form";
 
 export default function Signup() {
+  
   return (
     <div className="container relative hidden  min-h-[calc(100vh-65px)] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       

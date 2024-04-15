@@ -1,6 +1,7 @@
 
 
-const oracledb = require('oracledb');
+import oracledb from 'oracledb';
+import { User } from './types';
 
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
@@ -23,7 +24,7 @@ export async function fetchUsers() {
 
     // console.log(result.rows);
     await connection.close();
-    return result.rows;
+    return result.rows as User[];
 }
 
 export async function fetchKepek() {
@@ -43,7 +44,7 @@ export async function fetchKepek() {
     );
     // console.log(result.rows);
     await connection.close();
-    return result.rows;
+    return result.rows ;
 
 }
 

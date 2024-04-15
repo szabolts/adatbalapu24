@@ -7,10 +7,10 @@ import { logOut } from "@/lib/actions";
 
 
 export default function LogInOutButton ({ session }: { session?: Session | null }) {
-    console.log("session", session?.user?.name);
+    console.log("----session", session?.user?.email);
     return session ? (
         <div className="ml-auto flex items-center gap-4">
-        <p>{session.user?.name}</p>
+        <p>{session.user?.email}</p>
         <ProfileButton/>
         <LogoutButton/>
 

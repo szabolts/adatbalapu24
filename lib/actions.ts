@@ -150,10 +150,10 @@ export async function upload(formData: FormData) {
       `SELECT FelhasznaloID FROM Felhasznalo WHERE EMAIL = :email`,
       [session?.user?.email],
     )
-    console.log("---useridatUpdate title:", title)
-    console.log("---useridatUpdate path:", path2)
-    console.log("---useridatUpdate prompt:", prompt)
-    console.log("------useridatUpdate userid: ", userID.rows[0].FELHASZNALOID)
+    // console.log("---useridatUpdate title:", title)
+    // console.log("---useridatUpdate path:", path2)
+    // console.log("---useridatUpdate prompt:", prompt)
+    // console.log("------useridatUpdate userid: ", userID.rows[0].FELHASZNALOID)
 
     const result2 = await connection.execute(
       `INSERT INTO KEP (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, prompt, FelhasznaloID) VALUES (:cim, SYSDATE, :path, :prompt, :userid)`,
@@ -220,7 +220,7 @@ export async function updateProfile(formData: FormData) {
        SET Felhasznalonev = :username,
        Vezeteknev = :lastname,
        Keresztnev = :firstname,
-       Email = :email,
+       Email = :emailgit
        WHERE FelhasznaloID = :userId`,
       [username, lastname, firstname, email, userId],
       { autoCommit: true }

@@ -15,4 +15,6 @@ export type Kep = {
   FAJL_ELERESI_UTVONAL: string;
   PROMPT: string;
   FELHASZNALOID: string;
+  FELHASZNALONEV: string;
 }
+

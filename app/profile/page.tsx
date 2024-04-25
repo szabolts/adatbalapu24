@@ -1,24 +1,27 @@
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import ProfileForm from "./profile-form";
-import { fetchCurrentUser } from '@/lib/data';
+import { fetchUserByEmail } from '@/lib/data';
 import { User } from "@/lib/types";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator"; 
 
 export default  async function  SettingsProfilePage() {
-    const data: User[] | undefined = await fetchCurrentUser();
-    console.log(data);
+    const data: User[] | undefined = await fetchUserByEmail();
+    // console.log(data);
 
   return (
-    <div className="min-h-[calc(100vh-65px)]  flex flex-row items-center justify-center ">
-    
-      <Card className="max-w-4xl bg-black rounded-xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 ">
-        <CardHeader>
-          <CardTitle className="flex flex-row justify-center ">Profile settings</CardTitle>
-        </CardHeader>
-        <CardContent>
+    <div className="flex flex-row">
+      <div className=" w-full max-w-md ">
+        <div className="flex flex-col ">
+          <span className="text-xl font-bold tracking-tight">Profile settings</span>
+          <p className="text-sm text-muted-foreground">Update your personal information here.</p>
+          <Separator className="my-6"/>
+        </div>
+        <div className="space-y-4">
           <ProfileForm data = {data}/>
-        </CardContent>
-      </Card>  
-
+        </div>
+      </div>  
     </div>
   )
 }

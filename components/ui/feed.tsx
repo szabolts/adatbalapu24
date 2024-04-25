@@ -12,7 +12,7 @@ import {
   IconTableColumn,
 } from "@tabler/icons-react";
 import Image from "next/image";
-
+import Link from "next/link";
 import { Kep } from "@/lib/types";
 import { fetchKepek } from "@/lib/data";
 
@@ -37,18 +37,23 @@ export async function Feed() {
           // title={item.title}
           // description={item.description}
           header={
-          <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl ">
-          <Image
-                alt={kep.CIM}
-                width={500}
-                height={500}
-                src={kep.FAJL_ELERESI_UTVONAL}
-                className="rounded-lg"
-                style={{
-                  objectFit: 'cover', // cover, contain, none
-                }}
-              /> 
-           </div>}
+            <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl ">
+              <Link href={`/${kep.KEPID}`}>
+                
+                  <Image
+                    alt={kep.CIM}
+                    width={500}
+                    height={500}
+                    src={kep.FAJL_ELERESI_UTVONAL}
+                    className="rounded-lg"
+                    style={{
+                      objectFit: "cover", // cover, contain, none
+                    }}
+                  />
+                
+              </Link>
+            </div>
+          }
           // icon={item.icon}
           // className={i === 3 || i === 6 || i === 10 || i === 13 ? "md:col-span-2" : ""}
         />
@@ -56,9 +61,6 @@ export async function Feed() {
     </BentoGrid>
   );
 }
-
-
-
 
 // const Skeleton = () => (
 //   <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100">
@@ -71,7 +73,7 @@ export async function Feed() {
 //           style={{
 //             objectFit: 'cover', // cover, contain, none
 //           }}
-//         /> 
+//         />
 //   </div>
 // );
 // const items = [

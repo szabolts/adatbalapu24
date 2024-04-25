@@ -5,6 +5,7 @@ import {
     EyeNoneIcon,
   } from "@radix-ui/react-icons"
   import { Column } from "@tanstack/react-table"
+  import { ArrowUpDown } from "lucide-react"
   
   import { cn } from "@/lib/utils"
   import { Button } from "@/components/ui/button"
@@ -30,6 +31,16 @@ import {
     if (!column.getCanSort()) {
       return <div className={cn(className)}>{title}</div>
     }
+
+    // return (
+    //   <Button
+    //     variant="ghost"
+    //     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+    //   >
+    //     <span>{title}</span>
+    //     <ArrowUpDown className="ml-2 h-4 w-4" />
+    //   </Button>
+    // )
   
     return (
       <div className={cn("flex items-center space-x-2", className)}>
@@ -59,14 +70,15 @@ import {
               <ArrowDownIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
               Desc
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
+            {/* <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
               <EyeNoneIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
               Hide
-            </DropdownMenuItem>
+            </DropdownMenuItem> */}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
     )
+
   }
   

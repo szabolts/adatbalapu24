@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-
+import { EditUser, DeleteUser } from "@/components/ui/users/buttons";
 import { User } from "@/lib/types";
 import {
   DropdownMenu,
@@ -13,30 +13,64 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { DataTableColumnHeader } from "@/components/ui/data-table-column-header";
+import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-column-header";
+import { Badge } from "@/components/ui/badge"
+
 
 export const columns: ColumnDef<User>[] = [
+  
   {
-    accessorKey: "FELHASZNALONEV",
-    header: ({ column }) => {
-      <DataTableColumnHeader column={column} title="Username" />
-      },
-  },
-  {
-    accessorKey: "VEZETEKNEV",
-    header: "First name",
-  },
-  {
-    accessorKey: "KERESZTNEV",
-    header: "Last name",
+    accessorKey: "FELHASZNALOID",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="ID" />
+    ),
+    
   },
   {
     accessorKey: "EMAIL",
-    header: "Email",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Email" />
+    ),
+  },
+  {
+    accessorKey: "FELHASZNALONEV",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Username" />
+    ),
+  },
+  {
+    accessorKey: "VEZETEKNEV",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Last name" />
+    ),
+  },
+  {
+    accessorKey: "KERESZTNEV",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="First name" />
+    ),
   },
   {
     accessorKey: "ROLE",
-    header: "Role",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Role" />
+    ),
+    cell: ({ row }) => {
+      const user = row.original;
+      return (
+        <Badge
+          variant={
+            user.ROLE === "admin"
+              ? "default"
+              : user.ROLE === "user"
+              ? "outline"
+              : "destructive"
+          }
+        >
+          {user.ROLE}
+        </Badge>
+      );
+    },
   },
   {
     id: "actions",
@@ -58,9 +92,9 @@ export const columns: ColumnDef<User>[] = [
               Copy e-mail
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit user</DropdownMenuItem>
+            <DropdownMenuItem><EditUser id={user.FELHASZNALOID} /></DropdownMenuItem>
             <DropdownMenuItem>
-              <div className="text-red-500">Delete user</div>
+              <div className="text-red-500"><DeleteUser id={user.FELHASZNALOID}/></div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -68,3 +102,4 @@ export const columns: ColumnDef<User>[] = [
     },
   },
 ];
+

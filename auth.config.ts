@@ -10,12 +10,12 @@ export const authConfig = {
   },
   callbacks: {
     async authorized({ auth, request: { nextUrl } }) {
-      console.log("AUUUUTH:    ", auth)
+      // console.log("AUUUUTH:    ", auth)
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
       const isOnUpload = nextUrl.pathname.startsWith("/upload");
       const isOnLogin = nextUrl.pathname.startsWith("/login");
-      console.log("email:    ", auth?.user?.email);
+      // console.log("email:    ", auth?.user?.email);
       // const isAdmin =  getAdminByEmail(!!auth?.user.email.toString());
       // const isAdmin = auth?.user?.role === "admin";
       if (isOnUpload) {

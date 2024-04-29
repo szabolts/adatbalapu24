@@ -1,6 +1,6 @@
 "use client";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { dislikeComment, like, likeComment } from "./actions"; // Figyeld, hogy az akciók mások lehetnek
+import { dislikeComment, like, likeComment } from "./actions"; 
 import { useOptimistic } from "react";
 
 export function LikeComment({
@@ -15,7 +15,7 @@ export function LikeComment({
     onLiked: () => Promise<void>;
   }) {
   const [optimisticState, setOptimisticLikes] = useOptimistic(
-    { likes, isLiked }, // Kezdeti állapot a lájkokhoz
+    { likes, isLiked }, 
     (state, action: "LIKE" | "DISLIKE") => {
       if (action === "LIKE") {
         return { likes: state.likes + 1, isLiked: true };

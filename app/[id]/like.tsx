@@ -14,8 +14,6 @@ export function Like({
   isLiked: boolean;
   onLiked: () => Promise<void>;
 }) {
-  // const [likes, setLikes] = useState<number>(0);
-  // const [isLiked, setIsLiked] = useState<boolean | undefined>(undefined);
   const [optimisticState, setOptimisticLikes] = useOptimistic(
     { likes, isLiked },
     (state, action: "LIKE" | "DISLIKE") => {
@@ -26,37 +24,6 @@ export function Like({
       }
     }
   );
-
-  // useEffect(() => {
-  //   async function fetchLikes() {
-  //     const { likes: fetchedLikes, isLiked: fetchedIsLiked } = await getLikes(id);
-  //     setLikes(fetchedLikes);
-  //     setIsLiked(fetchedIsLiked);
-  //   }
-  //   fetchLikes();
-  // }, [id]);
-
-  // const handleLike = async () => {
-  //   if (isLiked !== undefined) {
-  //     if (isLiked) {
-  //       await dislike(id);
-  //       setLikes(prevLikes => prevLikes - 1);
-  //       setIsLiked(false);
-  //     } else {
-  //       await like(id);
-  //       setLikes(prevLikes => prevLikes + 1);
-  //       setIsLiked(true);
-  //     }
-  //   // Az állapotok frissítése a like vagy dislike művelet után
-  //     await updateLikesState();
-  //   }
-  // };
-
-  // const updateLikesState = async () => {
-  //   const { likes: updatedLikes, isLiked: updatedIsLiked } = await getLikes(id);
-  //   setLikes(updatedLikes);
-  //   setIsLiked(updatedIsLiked);
-  // };
 
   return (
     <form

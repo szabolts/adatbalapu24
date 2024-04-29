@@ -2,18 +2,13 @@
 import Link from "next/link";
 import { Button } from "@nextui-org/react";
 import { Session } from "next-auth";
-
-import { logOut } from "@/lib/actions";
-
+import { NavUserComponent }  from "@/components/ui/nav-user-component";
 
 export default function LogInOutButton ({ session }: { session?: Session | null }) {
     console.log("----session", session?.user?.email);
     return session ? (
         <div className="ml-auto flex items-center gap-4">
-        <p>{session.user?.email}</p>
-        <ProfileButton/>
-        <LogoutButton/>
-
+        <NavUserComponent/>
         </div>
     ): (
         <div className="ml-auto flex items-center space-x-4">
@@ -26,25 +21,4 @@ export default function LogInOutButton ({ session }: { session?: Session | null 
           </Button>
         </div>
     );
-}
-
-function LogoutButton() {
-    return  (
-        <form
-          action={logOut}
-        >
-          <Button type="submit" color="danger" >
-            Sign out
-          </Button>
-        </form>
-        
-      );
-}
-
-function ProfileButton() {
-  return (
-    <Button href="/profile" variant="shadow" color="secondary" as={Link} className="font-bold">
-      Profile
-    </Button>
-  );
 }

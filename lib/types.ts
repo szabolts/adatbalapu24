@@ -11,16 +11,22 @@ export type User = {
 export type Kep = {
   KEPID: number;
   CIM: string;
-  FELTOLTES_DATUM: Date, // vagy string, ha a dátumot stringként tárolod
+  FELTOLTES_DATUM: Date, 
   FAJL_ELERESI_UTVONAL: string;
   PROMPT: string;
   FELHASZNALOID: string;
   FELHASZNALONEV: string;
 }
 
-
 export type Kategoria = {
   KATEGORIAID: number;
   NEV: string;
-  LEIRAS: string;
+  LEIRAS: string | null; 
+}
+
+export type KategoriaEsElsoKep = {
+  KATEGORIAID: number;
+  KATEGORIANEV: string;
+  KATEGORIALEIRAS: string | null;
+  ELSOKEPELERESIUT: string;
 }

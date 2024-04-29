@@ -51,7 +51,7 @@ export default async function PicturePage({
         </div>
         <div className="flex flex-col w-1/3 gap-2 border rounded-lg p-2">
           <div className="flex flex-row items-center gap-2 m-2 ">
-            <Avatar>
+            <Avatar className="border-2 border-gray-500 ">
               <AvatarImage alt={kep[0].FELHASZNALONEV} />
               <AvatarFallback>
                 {kep[0].FELHASZNALONEV.split(" ")
@@ -78,7 +78,7 @@ export default async function PicturePage({
             {comments.length > 0 ? (
               comments.map((comment: any) => (
                 <div key={comment.KOMMENTID} className="flex gap-2">
-                  <Avatar>
+                  <Avatar className="border-2 border-gray-500 ">
                     <AvatarImage alt={comment.FELHASZNALONEV} />
                     <AvatarFallback>
                       {comment.FELHASZNALONEV.split(" ")

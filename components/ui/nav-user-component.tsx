@@ -32,7 +32,7 @@ export async function NavUserComponent({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar>
+        <Avatar className="border-2 border-purple-600 cursor-pointer hover:border-purple-500 duration-75">
           <AvatarImage alt={user[0].FELHASZNALONEV} />
           <AvatarFallback  >{user[0].FELHASZNALONEV[0]}</AvatarFallback>
         </Avatar>

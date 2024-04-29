@@ -24,7 +24,7 @@ export function EditPicture({ id }: { id: number }) {
   );
 }
 
-export function DeletePicture({ id }: { id: number }) {
+export function DeletePicture({ id }: { id: number}) {
   const deletee = deletePictureById.bind(null, id);
 
   return (

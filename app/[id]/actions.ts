@@ -73,10 +73,10 @@ export async function getLikes(id: number) {
       `SELECT CASE
       WHEN COUNT(*) > 0 THEN 1
       ELSE 0
-    END AS isLiked
-FROM KEPETLIKEOL
-WHERE KepID = :id 
-AND FelhasznaloID = :userid`,
+      END AS isLiked
+      FROM KEPETLIKEOL
+      WHERE KepID = :id 
+      AND FelhasznaloID = :userid`,
       [id, userId]
     );
     

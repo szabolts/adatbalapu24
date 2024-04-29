@@ -31,3 +31,8 @@ export type KategoriaEsElsoKep = {
   KATEGORIALEIRAS: string | null;
   ELSOKEPELERESIUT: string;
 }
+
+export type Stat1 = {
+  FELHASZNALONEV: string;
+  FELTOLTOTTKEPEKSZAMA: number;
+}

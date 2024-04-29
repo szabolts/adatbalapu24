@@ -139,7 +139,7 @@ export async function upload(formData: FormData) {
       [session?.user?.email]
     );
 
-    const result = await connection.execute(
+    const result: any = await connection.execute(
       `SELECT KategoriaID FROM KATEGORIA WHERE Nev = :kategoria_nev`,
       [kategoria]
     );
@@ -157,7 +157,7 @@ export async function upload(formData: FormData) {
       { autoCommit: true }
     );
 
-    const result2 = await connection.execute(
+    const result2: any = await connection.execute(
       `SELECT KepID FROM KEP WHERE Cim = :cim`,
       [title]
     );

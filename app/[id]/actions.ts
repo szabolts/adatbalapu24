@@ -144,3 +144,43 @@ export async function comment(id: number, formData: FormData) {
     return { error: "comment error" };
   }
 }
+
+export async function likeComment(commentID: number) {
+  try {
+    const connection = await getConnection();
+    const session = await auth();
+    const userId = await getUserId(connection, session?.user?.email);
+
+    // Hívjuk meg a tárolt eljárást az adatbázisban
+    await connection.execute(
+      `INSERT INTO KOMMENTLIKEOL (FelhasznaloID, KOMMENTID) VALUES (:userID, :commentID)`,
+      [userId, commentID],
+      { autoCommit: true }
+    );
+
+    await connection.close();
+  } catch (error) {
+    console.error(error);
+    return { error: "like comment error" };
+  }
+}
+
+export async function dislikeComment(commentID: number) {
+  try {
+    const connection = await getConnection();
+    const session = await auth();
+    const userId = await getUserId(connection, session?.user?.email);
+
+    // Hívjuk meg a tárolt eljárást az adatbázisban
+    await connection.execute(
+      `DELETE FROM KOMMENTLIKEOL WHERE FelhasznaloID = :userID AND KOMMENTID = :commentID`,
+      [userId, commentID],
+      { autoCommit: true }
+    );
+
+    await connection.close();
+  } catch (error) {
+    console.error(error);
+    return { error: "dislike comment error" };
+  }
+}

@@ -12,6 +12,7 @@ import { comment } from "./actions";
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Like } from "./like";
 import { revalidatePath } from "next/cache";
+import { LikeComment } from "./comment_like";
 
 
 export type Like = {
@@ -92,6 +93,9 @@ export default async function PicturePage({
                         {comment.FELHASZNALONEV}
                       </span>
                       <span className="text-sm">{comment.TARTALOM}</span>
+                    </div>
+                    <div className="flex gap-1 items-center">
+                  
                     </div>
                     <span className="text-xs ml-2 text-muted-foreground">
                       {new Date(comment.DATUM).toLocaleString([], {

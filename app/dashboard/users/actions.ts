@@ -3,7 +3,7 @@ import { z } from "zod";
 import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-
+import { getConnection } from "@/lib/db";
 const oracledb = require("oracledb");
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 const mypw = "aesdeaesde123";
@@ -37,11 +37,7 @@ export async function updateProfileById(id: string, formData: FormData) {
   });
 
   try {
-    const connection = await oracledb.getConnection({
-      user: process.env.ORACLE_USER,
-      password: mypw,
-      connectString: "159.69.117.79:1521/PODB",
-    });
+    const connection = await getConnection();
 
     // Felhasználó adatainak frissítése az adatbázisban
     const result = await connection.execute(
@@ -69,11 +65,7 @@ export async function updateProfileById(id: string, formData: FormData) {
 
 export async function deleteProfileById(id: string) {
   try {
-    const connection = await oracledb.getConnection({
-      user: process.env.ORACLE_USER,
-      password: mypw,
-      connectString: "159.69.117.79:1521/PODB",
-    });
+    const connection = await getConnection();
 
     await connection.execute(
       `DELETE FROM Felhasznalo WHERE FelhasznaloID = :id`,

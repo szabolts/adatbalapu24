@@ -16,6 +16,7 @@ export type Kep = {
   PROMPT: string;
   FELHASZNALOID: string;
   FELHASZNALONEV: string;
+  KATEGORIA_NEV: string;
 }
 
 export type Kategoria = {

@@ -109,33 +109,29 @@ const UploadSchema = z.object({
   //   "Only .jpg, .jpeg, .png and .webp formats are supported."
   // ),
   title: z.string(),
+  kategoria: z.string(),
   prompt: z.string(),
 });
 
 export async function upload(formData: FormData) {
-  const { title, prompt, image } = UploadSchema.parse({
+  const { title, kategoria, prompt, image } = UploadSchema.parse({
     title: formData.get("title"),
+    kategoria: formData.get("kategoria"),
     prompt: formData.get("prompt"),
     image: formData.get("image"),
   });
 
-  const buffer = Buffer.from(await image.arrayBuffer());
   const filename = image.name.replaceAll(" ", "_");
+  const path2 = `/kepek/${filename}`;
+
   try {
+    const buffer = Buffer.from(await image.arrayBuffer());
     await writeFile(
       path.join(process.cwd(), "/public/kepek/" + filename),
       buffer
     );
-    console.log("Upload: ", title, prompt, filename);
-  } catch (error) {
-    console.error(error);
-    return { message: "Upload failed" };
-  }
-  const path2 = `/kepek/${filename}`;
-  const session = await auth();
-  console.log("user: ", session);
 
-  try {
+    const session = await auth();
     const connection = await getConnection();
 
     const userID: any = await connection.execute(
@@ -143,18 +139,42 @@ export async function upload(formData: FormData) {
       [session?.user?.email]
     );
 
-    // console.log("---useridatUpdate title:", title)
-    // console.log("---useridatUpdate path:", path2)
-    // console.log("---useridatUpdate prompt:", prompt)
-    // console.log("------useridatUpdate userid: ", userID.rows[0].FELHASZNALOID)
+    const result = await connection.execute(
+      `SELECT KategoriaID FROM KATEGORIA WHERE Nev = :kategoria_nev`,
+      [kategoria]
+    );
+    const kategoriaID = result.rows[0]?.KATEGORIAID;
 
-    const result2 = await connection.execute(
-      `INSERT INTO KEP (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, prompt, FelhasznaloID) VALUES (:cim, SYSDATE, :path, :prompt, :userid)`,
-      [title, path2, prompt, userID.rows[0].FELHASZNALOID],
+    await connection.execute(
+      `INSERT INTO KEP (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, prompt, FelhasznaloID) 
+       VALUES (:cim, SYSDATE, :path, :prompt, :userid)`,
+      {
+        cim: title,
+        path: path2,
+        prompt: prompt,
+        userid: userID.rows[0]?.FELHASZNALOID,
+      },
       { autoCommit: true }
     );
-    console.log("-------update result:", result2);
+
+    const result2 = await connection.execute(
+      `SELECT KepID FROM KEP WHERE Cim = :cim`,
+      [title]
+    );
+    const kepid = result2.rows[0]?.KEPID;
+
+    await connection.execute(
+      `INSERT INTO KATEGORIAJA (KepID, KategoriaID) 
+       VALUES (:kepid, :kategoriaid)`,
+      [kepid, kategoriaID],
+      { autoCommit: true }
+    );
+
     await connection.close();
+
+    console.log("Upload: ", title, prompt, filename);
+    console.log("Inserted KepID:", kepid);
+
   } catch (error) {
     console.error(error);
     return { message: "ERROR at upload to database" };
@@ -162,6 +182,7 @@ export async function upload(formData: FormData) {
   revalidatePath("/");
   redirect("/");
 }
+
 
 const UpdateShema = z.object({
   firstname: z.string(),

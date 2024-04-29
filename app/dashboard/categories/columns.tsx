@@ -6,7 +6,7 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-column-header";
 import { Kategoria } from "@/lib/types";
-import { DeleteCategory, EditCategory } from "@/components/ui/category/buttons";
+import { DeleteCategory, EditCategory } from "@/components/ui/categories/buttons";
 
 export const columns: ColumnDef<Kategoria>[] = [
   {

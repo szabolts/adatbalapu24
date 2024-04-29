@@ -34,10 +34,6 @@ export async function like(id: number) {
       { autoCommit: true }
     );
     await connection.close();
-
-    // if (!result) {
-    //   return { error: "Gatya likeolas"}
-    // }
   } catch (error) {
     console.error(error);
     return { error: "like error" };

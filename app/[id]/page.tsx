@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { fetchKepekById } from "@/lib/data";
+import { fetchKepekById, getKommentLikeById } from "@/lib/data";
 import { notFound } from "next/navigation";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { FaRegHeart } from "react-icons/fa";
@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { getLikesByID, fetchCommentsByID } from "@/lib/data";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { getLikes } from "./actions";
+import {  fetchCommentLikesByID,  getLikes } from "./actions";
 import { comment } from "./actions";
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Like } from "./like";
@@ -32,10 +32,13 @@ export default async function PicturePage({
   if (!kep) {
     notFound();
   }
-  // const likes: any = await getLikesByID(kep[0].KEPID);
+  //const likes: any = await getLikesByID(kep[0].KEPID);
   const comments: any = await fetchCommentsByID(kep[0].KEPID);
+  const commlike: any = await getKommentLikeById(kep[0].KEPID)
+
   const commentBind = comment.bind(null, kep[0].KEPID);
   const { likes = 0, isLiked = false } = await getLikes(parseInt(id));
+  const { commentLikes = 0, isCommentLiked = false } = await fetchCommentLikesByID(parseInt(id));
 
 
   return (
@@ -95,8 +98,17 @@ export default async function PicturePage({
                       <span className="text-sm">{comment.TARTALOM}</span>
                     </div>
                     <div className="flex gap-1 items-center">
-                  
+
                     </div>
+                    <LikeComment
+                        id={parseInt(comment.KOMMENTID)}
+                        likes={commentLikes}
+                        isLiked={isCommentLiked}
+                        onLiked={async () => {
+                          "use server";
+                          revalidatePath(`/${id}`);
+                        }}
+                      />
                     <span className="text-xs ml-2 text-muted-foreground">
                       {new Date(comment.DATUM).toLocaleString([], {
                         hour: "2-digit",

@@ -51,6 +51,14 @@ interface LikeRow {
 interface IsLikedRow {
   ISLIKED: number;
 }
+interface LikecommRow {
+  LIKES: number;
+}
+
+interface IscommLikedRow {
+  ISLIKED: number;
+}
+
 
 
 export async function getLikes(id: number) {
@@ -145,6 +153,42 @@ export async function comment(id: number, formData: FormData) {
   }
 }
 
+export async function fetchCommentLikesByID(commentID: number) {
+  try {
+    const connection = await getConnection();
+    const session = await auth();
+    const userId = await getUserId(connection, session?.user?.email);
+
+    const result = await connection.execute(
+      `SELECT COUNT(*) AS likes FROM KOMMENTETLIKEOL WHERE KOMMENTID = :commentID`,
+      [commentID]
+    );
+
+    const isLiked = await connection.execute(
+      `SELECT CASE
+        WHEN COUNT(*) > 0 THEN 1
+        ELSE 0
+      END AS isLiked
+      FROM KOMMENTETLIKEOL
+      WHERE KOMMENTID = :commentID 
+      AND FelhasznaloID = :userId`,
+      [commentID, userId]
+    );
+
+    const commentLikes = ((result.rows?.[0] as LikeRow)?.LIKES) || 0;
+    const isCommentLiked = ((isLiked.rows?.[0] as IsLikedRow)?.ISLIKED) === 1;
+
+    await connection.close();
+    console.log( "kommentLIKE:", commentLikes)
+
+    return { commentLikes, isCommentLiked };
+  } catch (error) {
+    console.error(error);
+    return { error: "error fetching comment likes" };
+  }
+}
+
+
 export async function likeComment(commentID: number) {
   try {
     const connection = await getConnection();
@@ -153,7 +197,7 @@ export async function likeComment(commentID: number) {
 
     // Hívjuk meg a tárolt eljárást az adatbázisban
     await connection.execute(
-      `INSERT INTO KOMMENTLIKEOL (FelhasznaloID, KOMMENTID) VALUES (:userID, :commentID)`,
+      `INSERT INTO KOMMENTETLIKEOL (FelhasznaloID, KOMMENTID) VALUES (:userID, :commentID)`,
       [userId, commentID],
       { autoCommit: true }
     );
@@ -173,7 +217,7 @@ export async function dislikeComment(commentID: number) {
 
     // Hívjuk meg a tárolt eljárást az adatbázisban
     await connection.execute(
-      `DELETE FROM KOMMENTLIKEOL WHERE FelhasznaloID = :userID AND KOMMENTID = :commentID`,
+      `DELETE FROM KOMMENTETLIKEOL WHERE FelhasznaloID = :userID AND KOMMENTID = :commentID`,
       [userId, commentID],
       { autoCommit: true }
     );
@@ -184,3 +228,5 @@ export async function dislikeComment(commentID: number) {
     return { error: "dislike comment error" };
   }
 }
+
+

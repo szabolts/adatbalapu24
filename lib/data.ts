@@ -283,3 +283,27 @@ export async function getKategoriakByKepId(kepId: number) {
     return { error: "error fetching categories by image ID" };
   }
 }
+
+export async function getKommentLikeById(commentId: number) {
+  try {
+    const connection = await oracledb.getConnection({
+      user: "test",
+      password: mypw,
+      connectString: "159.69.117.79:1521/PODB",
+    });
+
+    const likes = await connection.execute(
+      `SELECT COUNT(*) AS likeok_szama
+       FROM KOMMENTETLIKEOL
+       WHERE KOMMENTID = :commentId`,
+      [commentId]
+    );
+
+    await connection.close();
+    console.log("Komment likes: ", likes.rows);
+    return likes.rows;
+  } catch (error) {
+    console.error(error);
+    return { error: "error fetching comment likes" };
+  }
+}

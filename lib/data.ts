@@ -13,9 +13,10 @@ export async function fetchUsers() {
   const result = await connection.execute(
     `SELECT *
          FROM FELHASZNALO`,
-    []
+    [] // bind value for :id
   );
 
+  // console.log(result.rows);
   await connection.close();
   return result.rows as User[];
 }
@@ -27,15 +28,17 @@ export async function fetchUserByEmail() {
   try {
     const connection = await getConnection();
 
-    const result = await connection.execute(
-      `SELECT *
-           FROM FELHASZNALO
-           WHERE EMAIL = :email`,
-      [email]
-    );
-    await connection.close();
-    return result.rows as User[];
-  } catch (error) {
+  const result = await connection.execute(
+    `SELECT *
+         FROM FELHASZNALO
+         WHERE EMAIL = :email`,
+    [email]
+  );
+
+  // console.log(result.rows);
+  await connection.close();
+  return result.rows as User[];
+} catch (error) {
     console.error("Failed to fetch user:", error);
     throw new Error("Failed to fetch user.");
   }
@@ -51,6 +54,7 @@ export async function fetchUserById(id: string) {
     [id]
   );
 
+  // console.log(result.rows);
   await connection.close();
   return result.rows as User[];
 }
@@ -65,7 +69,7 @@ export async function fetchKepek() {
          DESC`,
     []
   );
-
+  
   await connection.close();
 
   return result.rows;
@@ -235,7 +239,7 @@ export async function fetchCommentsByID(id: number) {
 
 
 export async function getKategoriak() {
-  try {
+try {
     const connection = await oracledb.getConnection({
       user: "test",
       password: mypw,
@@ -249,11 +253,12 @@ export async function getKategoriak() {
     await connection.close();
     console.log("Kategoriak: ", kategoriak.rows);
     return kategoriak.rows as Kategoria[];
-  } catch (error) {
+} catch (error) {
     console.error("Failed to fetch category:", error);
     throw new Error("Failed to fetch category.");
   }
-}
+  } 
+
 
 export async function getKategoriakByKepId(kepId: number) {
   try {

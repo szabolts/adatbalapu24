@@ -4,13 +4,14 @@ import Link from "next/link";
 import { Button as Button2 } from "@nextui-org/react";
 import { auth } from "@/auth";
 import LogInOutButton from "./login-out-button";
+import { HeaderButtons } from "./header-buttons";
 
 export default async function Header() {
   const session = await auth();
   console.log("session in header", session);
   return (
     <div className="border-b sticky top-0 z-40 backdrop-filter backdrop-blur-lg bg-opacity-30">
-      <div className="flex h-16 items-center px-4 container mx-auto ">
+      <div className="relative flex h-16 items-center px-4 container mx-auto ">
         <Link href="/" passHref>
           <div className="flex items-center ">
             <svg
@@ -32,7 +33,7 @@ export default async function Header() {
           Upload
         </Button2>
         </div>
-
+        <HeaderButtons />
      
 
         <LogInOutButton session={session} />

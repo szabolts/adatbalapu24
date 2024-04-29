@@ -15,14 +15,15 @@ export const authConfig = {
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
       const isOnUpload = nextUrl.pathname.startsWith("/upload");
       const isOnLogin = nextUrl.pathname.startsWith("/login");
+      const isOnProfile = nextUrl.pathname.startsWith("/profile");
       // console.log("email:    ", auth?.user?.email);
       // const isAdmin =  getAdminByEmail(!!auth?.user.email.toString());
       // const isAdmin = auth?.user?.role === "admin";
-      if (isOnUpload) {
+      if (isOnUpload || isOnDashboard || isOnProfile) {
         if (isLoggedIn) return true;
         return false; // Redirect unauthenticated users to login page
       } else if (isLoggedIn && isOnLogin) {
-        return Response.redirect(new URL(`/upload`, nextUrl));
+        return Response.redirect(new URL(`/`, nextUrl));
       }
       
       return true;

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { Feed } from "@/components/ui/feed";
+import { Feed } from "@/components/home-page/feed";
 import { Toaster } from "react-hot-toast";
 
 export default async function Home() {

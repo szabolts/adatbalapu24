@@ -1,6 +1,6 @@
 import Link from "next/link"
 import clsx from 'clsx';
-import NavLinks from "./nav-links";
+import NavLinks from "./dashboard-nav-links";
 import { auth } from "@/auth";
 
 export default async function Sidenav() {

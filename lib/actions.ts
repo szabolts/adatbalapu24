@@ -7,10 +7,10 @@ import { signIn, signOut, auth } from "@/auth";
 import NextAuth, { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { stat, mkdir, writeFile } from "fs/promises";
-import path from 'path';
+import path from "path";
 import { User } from "./types";
 import { fetchUsers } from "./data";
-
+import { getConnection } from "@/lib/db";
 
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
 const ACCEPTED_IMAGE_MIME_TYPES = [
@@ -87,24 +87,20 @@ export async function createUser(formData: FormData) {
     );
     console.log("--------------Result", result);
     await connection.close();
-    
-    if (!result) {
-      return { error: "Gatya"}
-    }
 
+    if (!result) {
+      return { error: "Gatya" };
+    }
   } catch (error) {
     console.error(error);
-    return { error: "asd"}
+    return { error: "asd" };
   }
   revalidatePath("/");
   redirect("/login");
 }
 
-
-
 const UploadSchema = z.object({
-  image: z
-    .any(),
+  image: z.any(),
   // .refine((files) => {
   //    return files?.[0]?.size <= MAX_UPLOAD_SIZE;
   // }, `Max image size is 3MB.`)
@@ -113,14 +109,14 @@ const UploadSchema = z.object({
   //   "Only .jpg, .jpeg, .png and .webp formats are supported."
   // ),
   title: z.string(),
-  prompt: z.string()
+  prompt: z.string(),
 });
 
 export async function upload(formData: FormData) {
   const { title, prompt, image } = UploadSchema.parse({
     title: formData.get("title"),
     prompt: formData.get("prompt"),
-    image: formData.get("image")
+    image: formData.get("image"),
   });
 
   const buffer = Buffer.from(await image.arrayBuffer());
@@ -130,7 +126,7 @@ export async function upload(formData: FormData) {
       path.join(process.cwd(), "/public/kepek/" + filename),
       buffer
     );
-    console.log("Upload: ", title, prompt, filename)
+    console.log("Upload: ", title, prompt, filename);
   } catch (error) {
     console.error(error);
     return { message: "Upload failed" };
@@ -140,16 +136,13 @@ export async function upload(formData: FormData) {
   console.log("user: ", session);
 
   try {
-    const connection = await oracledb.getConnection({
-      user: "test",
-      password: mypw,
-      connectString: "159.69.117.79:1521/PODB",
-    });
+    const connection = await getConnection();
 
-    const userID = await connection.execute(
+    const userID: any = await connection.execute(
       `SELECT FelhasznaloID FROM Felhasznalo WHERE EMAIL = :email`,
-      [session?.user?.email],
-    )
+      [session?.user?.email]
+    );
+
     // console.log("---useridatUpdate title:", title)
     // console.log("---useridatUpdate path:", path2)
     // console.log("---useridatUpdate prompt:", prompt)
@@ -160,7 +153,7 @@ export async function upload(formData: FormData) {
       [title, path2, prompt, userID.rows[0].FELHASZNALOID],
       { autoCommit: true }
     );
-    console.log("-------update result:", result2)
+    console.log("-------update result:", result2);
     await connection.close();
   } catch (error) {
     console.error(error);
@@ -170,25 +163,23 @@ export async function upload(formData: FormData) {
   redirect("/");
 }
 
-const UpdateShema = z
-  .object({
-    firstname: z.string(),
-    lastname: z.string(),
-    username: z.string(),
-    email: z.string().email(),
-    password: z.string().min(6),
-  })
+const UpdateShema = z.object({
+  firstname: z.string(),
+  lastname: z.string(),
+  username: z.string(),
+  email: z.string().email(),
+  password: z.string().min(6),
+});
 
 export async function updateProfile(formData: FormData) {
-  const { firstname, lastname, username, email, password } =
-    UpdateShema.parse({
-      firstname: formData.get("firstname"),
-      lastname: formData.get("lastname"),
-      username: formData.get("username"),
-      email: formData.get("email"),
-      password: formData.get("password"),
-    });
-  console.log("-----------------",email)
+  const { firstname, lastname, username, email, password } = UpdateShema.parse({
+    firstname: formData.get("firstname"),
+    lastname: formData.get("lastname"),
+    username: formData.get("username"),
+    email: formData.get("email"),
+    password: formData.get("password"),
+  });
+  console.log("-----------------", email);
   try {
     // Felhasználó azonosítása
     const session = await auth();
@@ -196,7 +187,7 @@ export async function updateProfile(formData: FormData) {
     if (!userEmail) {
       throw new Error("User email is not available.");
     }
-    console.log(userEmail ," ez az useremail")
+    console.log(userEmail, " ez az useremail");
 
     const connection = await oracledb.getConnection({
       user: "test",
@@ -207,12 +198,12 @@ export async function updateProfile(formData: FormData) {
     // Felhasználó azonosítójának lekérése az e-mail cím alapján
     const userResult = await connection.execute(
       `SELECT * FROM Felhasznalo WHERE EMAIL = :email`,
-      [userEmail],
+      [userEmail]
     );
     const userResultID = userResult.FELHASZNALOID;
-    console.log("---------------------asd: ",userResult.rows[0].FELHASZNALOID)
-    console.log("---useridatUpdate title:", firstname)
-    console.log("---useridatUpdate path:", lastname)
+    console.log("---------------------asd: ", userResult.rows[0].FELHASZNALOID);
+    console.log("---useridatUpdate title:", firstname);
+    console.log("---useridatUpdate path:", lastname);
     const userId = userResult.rows[0].FELHASZNALOID;
     // Felhasználó adatainak frissítése az adatbázisban
     const result = await connection.execute(
@@ -234,11 +225,10 @@ export async function updateProfile(formData: FormData) {
     return { message: "Hiba történt a felhasználói adatok frissítése során." };
   }
   redirect("/");
-  
 }
-
 
 export async function logOut() {
   await signOut();
+  revalidatePath("/");
+  redirect("/");
 }
-

@@ -8,6 +8,8 @@ import { Like } from "./like";
 import { getLikesByID, fetchCommentsByID } from "@/lib/data";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { comment } from "./actions";
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 export type Like = {
   KEPID: number;
@@ -28,9 +30,10 @@ export default async function PicturePage({
   }
   const likes: any = await getLikesByID(kep[0].KEPID);
   const comments: any = await fetchCommentsByID(kep[0].KEPID);
+  const commentBind = comment.bind(null, kep[0].KEPID);
 
   return (
-    <div className="flex items-center w-full  min-h-screen">
+    <div className="flex items-center w-full min-h-[calc(100vh-65px)]">
       <div className="flex gap-4">
         <div className="w-2/3">
           <Image
@@ -38,7 +41,7 @@ export default async function PicturePage({
             width={900}
             height={750}
             src={kep[0].FAJL_ELERESI_UTVONAL}
-            className="rounded-lg"
+            className="rounded-lg border-1 border-gray-900"
           />
         </div>
         <div className="flex flex-col w-1/3 gap-2 border rounded-lg p-2">
@@ -66,7 +69,7 @@ export default async function PicturePage({
               {likes.length > 0 ? likes[0].LIKEOK_SZAMA : 0}
             </p>
           </div>
-          <div className="flex flex-col m-2 gap-2 mb-auto">
+          <ScrollArea className="flex flex-col m-2 gap-2 mb-auto max-h-[455px] ">
             {comments.length > 0 ? (
               comments.map((comment: any) => (
                 <div key={comment.KOMMENTID} className="flex gap-2">
@@ -78,7 +81,7 @@ export default async function PicturePage({
                         .join("")}
                     </AvatarFallback>
                   </Avatar>
-                  <div className="w-full">
+                  <div className="w-full mr-4">
                     <div className="flex flex-col border rounded-lg w-full p-2  gap-1">
                       <span className="font-semibold text-sm">
                         {comment.FELHASZNALONEV}
@@ -100,17 +103,20 @@ export default async function PicturePage({
             ) : (
               <p className="text-muted-foreground">No comments yet</p>
             )}
-          </div>
-          <div className="flex flex-col m-2 gap-2">
-            <Label htmlFor="comment">Write your comment</Label>
-            <Textarea
-              className="h-20"
-              placeholder="Write your comment..."
-              id="comment"
-            />
-            <Button className="mr-auto" color="secondary">
-              Comment
-            </Button>
+          </ScrollArea>
+          <div className="">
+            <form action={commentBind} className="flex flex-col m-2 gap-2">
+              <Label htmlFor="comment">Write your comment</Label>
+              <Textarea
+                name="comment"
+                className="h-20"
+                placeholder="Write your comment..."
+                id="comment"
+              />
+              <Button type="submit" className="mr-auto" color="secondary">
+                Comment
+              </Button>
+            </form>
           </div>
         </div>
       </div>

@@ -22,7 +22,7 @@ async function getUser(email: string): Promise<User | undefined>   {
       `SELECT * FROM Felhasznalo WHERE EMAIL = :email`,
         [email],
     );
-    console.log("------user: ",user.rows[0]);
+    // console.log("------user: ",user.rows[0]);
     await connection.close();
     return user.rows[0];
   } catch (error) {

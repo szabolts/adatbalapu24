@@ -18,3 +18,9 @@ export type Kep = {
   FELHASZNALONEV: string;
 }
 
+
+export type Kategoria = {
+  KATEGORIAID: number;
+  NEV: string;
+  LEIRAS: string;
+}

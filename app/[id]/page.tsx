@@ -4,12 +4,14 @@ import { notFound } from "next/navigation";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { FaRegHeart } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import { Like } from "./like";
 import { getLikesByID, fetchCommentsByID } from "@/lib/data";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+
 import { comment } from "./actions";
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Like } from "./like";
+
 
 export type Like = {
   KEPID: number;
@@ -64,10 +66,7 @@ export default async function PicturePage({
             <p className="text-sm text-muted-foreground">{kep[0].PROMPT}</p>
           </div>
           <div className="flex m-2 gap-1 items-center">
-            <Like id={kep[0].KEPID} />
-            <p className="text-sm text-muted-foreground">
-              {likes.length > 0 ? likes[0].LIKEOK_SZAMA : 0}
-            </p>
+            <Like id={kep[0].KEPID} likeCount={likes.length > 0 ? likes[0].LIKEOK_SZAMA : 0} />
           </div>
           <ScrollArea className="flex flex-col m-2 gap-2 mb-auto max-h-[455px] ">
             {comments.length > 0 ? (

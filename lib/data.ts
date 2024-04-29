@@ -232,3 +232,49 @@ export async function fetchCommentsByID(id: number) {
     return { error: "error fetching likes" };
   }
 }
+
+
+export async function getKategoriak() {
+  try {
+    const connection = await oracledb.getConnection({
+      user: "test",
+      password: mypw,
+      connectString: "159.69.117.79:1521/PODB",
+    });
+
+    const kategoriak = await connection.execute(
+      `SELECT * FROM KATEGORIA`
+    );
+
+    await connection.close();
+    console.log("Kategoriak: ", kategoriak.rows);
+    return kategoriak.rows;
+  } catch (error) {
+    console.error(error);
+    return { error: "error fetching categories" };
+  }
+}
+
+export async function getKategoriakByKepId(kepId: number) {
+  try {
+    const connection = await oracledb.getConnection({
+      user: "test",
+      password: mypw,
+      connectString: "159.69.117.79:1521/PODB",
+    });
+
+    const kategoriak = await connection.execute(
+      `SELECT KATEGORIA.* FROM KATEGORIA
+       INNER JOIN KATEGORIAJA ON KATEGORIA.KATEGORIAID = KATEGORIAJA.KATEGORIAID
+       WHERE KATEGORIAJA.KEPID = :kepId`,
+      [kepId]
+    );
+
+    await connection.close();
+    console.log("Kategoriak by KepId: ", kategoriak.rows);
+    return kategoriak.rows;
+  } catch (error) {
+    console.error(error);
+    return { error: "error fetching categories by image ID" };
+  }
+}

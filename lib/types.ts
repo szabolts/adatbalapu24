@@ -30,4 +30,3 @@ export type KategoriaEsElsoKep = {
   KATEGORIALEIRAS: string | null;
   ELSOKEPELERESIUT: string;
 }
-

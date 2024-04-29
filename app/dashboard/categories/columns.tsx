@@ -8,13 +8,7 @@ import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-col
 import { Kategoria } from "@/lib/types";
 import { DeleteCategory, EditCategory } from "@/components/ui/category/buttons";
 
-export const categoryColumns: ColumnDef<Kategoria>[] = [
-  {
-    accessorKey: "KATEGORIAID",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="ID" />
-    ),
-  },
+export const columns: ColumnDef<Kategoria>[] = [
   {
     accessorKey: "NEV",
     header: ({ column }) => (
@@ -55,4 +49,4 @@ export const categoryColumns: ColumnDef<Kategoria>[] = [
       );
     },
   },
-];export { categoryColumns as columns };
+];

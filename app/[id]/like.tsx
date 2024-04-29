@@ -1,48 +1,83 @@
 "use client";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { dislike, getLikes, like } from "./actions";
-import { useEffect, useState } from "react";
+import { useOptimistic } from "react";
 
-
-export function Like({ id, likeCount }: { id: number; likeCount: number }) {
-  const [likes, setLikes] = useState<number>(0);
-  const [isLiked, setIsLiked] = useState<boolean | undefined>(undefined);
-
-  useEffect(() => {
-    async function fetchLikes() {
-      const { likes: fetchedLikes, isLiked: fetchedIsLiked } = await getLikes(id);
-      setLikes(fetchedLikes);
-      setIsLiked(fetchedIsLiked);
-    }
-    fetchLikes();
-  }, [id]);
-
-  const handleLike = async () => {
-    if (isLiked !== undefined) {
-      if (isLiked) {
-        await dislike(id);
-        setLikes(prevLikes => prevLikes - 1);
-        setIsLiked(false);
+export function Like({
+  id,
+  likes,
+  isLiked,
+  onLiked,
+}: {
+  id: number;
+  likes: number;
+  isLiked: boolean;
+  onLiked: () => Promise<void>;
+}) {
+  // const [likes, setLikes] = useState<number>(0);
+  // const [isLiked, setIsLiked] = useState<boolean | undefined>(undefined);
+  const [optimisticState, setOptimisticLikes] = useOptimistic(
+    { likes, isLiked },
+    (state, action: "LIKE" | "DISLIKE") => {
+      if (action === "LIKE") {
+        return { likes: state.likes + 1, isLiked: true };
       } else {
-        await like(id);
-        setLikes(prevLikes => prevLikes + 1);
-        setIsLiked(true);
+        return { likes: state.likes - 1, isLiked: false };
       }
-    // Az állapotok frissítése a like vagy dislike művelet után
-      await updateLikesState();
     }
-  };
+  );
 
-  const updateLikesState = async () => {
-    const { likes: updatedLikes, isLiked: updatedIsLiked } = await getLikes(id);
-    setLikes(updatedLikes);
-    setIsLiked(updatedIsLiked);
-  };
+  // useEffect(() => {
+  //   async function fetchLikes() {
+  //     const { likes: fetchedLikes, isLiked: fetchedIsLiked } = await getLikes(id);
+  //     setLikes(fetchedLikes);
+  //     setIsLiked(fetchedIsLiked);
+  //   }
+  //   fetchLikes();
+  // }, [id]);
+
+  // const handleLike = async () => {
+  //   if (isLiked !== undefined) {
+  //     if (isLiked) {
+  //       await dislike(id);
+  //       setLikes(prevLikes => prevLikes - 1);
+  //       setIsLiked(false);
+  //     } else {
+  //       await like(id);
+  //       setLikes(prevLikes => prevLikes + 1);
+  //       setIsLiked(true);
+  //     }
+  //   // Az állapotok frissítése a like vagy dislike művelet után
+  //     await updateLikesState();
+  //   }
+  // };
+
+  // const updateLikesState = async () => {
+  //   const { likes: updatedLikes, isLiked: updatedIsLiked } = await getLikes(id);
+  //   setLikes(updatedLikes);
+  //   setIsLiked(updatedIsLiked);
+  // };
 
   return (
-    <div onClick={handleLike}>
-      <FaRegHeart size={20} color={isLiked ? "red" : "black"} />
-      <span>{likes}</span>
-    </div>
+    <form
+      action={async () => {
+        if (optimisticState.isLiked) {
+          setOptimisticLikes("DISLIKE");
+          await dislike(id);
+        } else {
+          setOptimisticLikes("LIKE");
+          await like(id);
+        }
+        await onLiked();
+      }}>
+      <button type="submit" className="flex gap-1 items-center">
+        {optimisticState.isLiked ? (
+          <FaHeart size={20} color="red" />
+        ) : (
+          <FaRegHeart size={20} color="white" />
+        )}
+        <span>{optimisticState.likes}</span>
+      </button>
+    </form>
   );
 }

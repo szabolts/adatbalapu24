@@ -1,9 +1,11 @@
+"use server"
 import { z } from "zod";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import oracledb from "oracledb";
+
 import bcrypt from "bcryptjs";
 
+const oracledb = require("oracledb");
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 const mypw = "aesdeaesde123";
 
@@ -34,8 +36,8 @@ export async function createCategory(formData: FormData) {
     });
 
     const result = await connection.execute(
-      `INSERT INTO KATEGORIA (KATEGORIAID, NEV, LEIRAS)
-       VALUES (KATEGORIA_SEQ.nextval, :name, :description)`,
+      `INSERT INTO KATEGORIA (NEV, LEIRAS)
+       VALUES (:name, :description)`,
       [name, description],
       { autoCommit: true }
     );
@@ -84,7 +86,7 @@ export async function updateCategoryById(id: string, formData: FormData) {
   redirect("/dashboard/categories");
 }
 
-export async function deleteCategoryById(id: string) {
+export async function deleteCategoryById(id: number) {
   try {
     const connection = await oracledb.getConnection({
       user: process.env.ORACLE_USER,
@@ -102,5 +104,5 @@ export async function deleteCategoryById(id: string) {
     console.error(error);
   }
   revalidatePath("/dasboard/categories");
-  redirect("/dashboard/categories");
+  // redirect("/dashboard/categories");
 }

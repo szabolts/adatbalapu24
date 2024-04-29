@@ -248,10 +248,10 @@ export async function getKategoriak() {
 
     await connection.close();
     console.log("Kategoriak: ", kategoriak.rows);
-    return kategoriak.rows;
+    return kategoriak.rows as Kategoria[];
   } catch (error) {
-    console.error(error);
-    return { error: "error fetching categories" };
+    console.error("Failed to fetch category:", error);
+    throw new Error("Failed to fetch category.");
   }
 }
 

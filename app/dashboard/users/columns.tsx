@@ -23,8 +23,7 @@ export const columns: ColumnDef<User>[] = [
     accessorKey: "FELHASZNALOID",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="ID" />
-    ),
-    
+    ), 
   },
   {
     accessorKey: "EMAIL",

@@ -7,10 +7,11 @@ import { Button } from "@/components/ui/button";
 import { getLikesByID, fetchCommentsByID } from "@/lib/data";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-
+import { getLikes } from "./actions";
 import { comment } from "./actions";
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Like } from "./like";
+import { revalidatePath } from "next/cache";
 
 
 export type Like = {
@@ -30,9 +31,11 @@ export default async function PicturePage({
   if (!kep) {
     notFound();
   }
-  const likes: any = await getLikesByID(kep[0].KEPID);
+  // const likes: any = await getLikesByID(kep[0].KEPID);
   const comments: any = await fetchCommentsByID(kep[0].KEPID);
   const commentBind = comment.bind(null, kep[0].KEPID);
+  const { likes = 0, isLiked = false } = await getLikes(parseInt(id));
+
 
   return (
     <div className="flex items-center w-full min-h-[calc(100vh-65px)]">
@@ -66,7 +69,10 @@ export default async function PicturePage({
             <p className="text-sm text-muted-foreground">{kep[0].PROMPT}</p>
           </div>
           <div className="flex m-2 gap-1 items-center">
-            <Like id={kep[0].KEPID} likeCount={likes.length > 0 ? likes[0].LIKEOK_SZAMA : 0} />
+            <Like id={parseInt(id)} likes={likes} isLiked={isLiked} onLiked={async () => {
+              "use server";
+              revalidatePath(`/${id}`)
+            }} />
           </div>
           <ScrollArea className="flex flex-col m-2 gap-2 mb-auto max-h-[455px] ">
             {comments.length > 0 ? (

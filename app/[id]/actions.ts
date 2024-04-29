@@ -6,7 +6,6 @@ const oracledb = require("oracledb");
 import { z } from "zod";
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
-
 async function getUserId(connection: any, email: any) {
   const result = await connection.execute(
     `SELECT FelhasznaloID FROM Felhasznalo WHERE EMAIL = :email`,
@@ -22,107 +21,102 @@ async function getUserId(connection: any, email: any) {
 }
 
 export async function like(id: number) {
-    try {
-        const connection = await oracledb.getConnection({
-          user: "test",
-          password: mypw,
-          connectString: "159.69.117.79:1521/PODB",
-        });
+  try {
+    const connection = await getConnection();
 
-        const session = await auth();
+    const session = await auth();
 
-        const userID = await connection.execute(
-            `SELECT FelhasznaloID FROM Felhasznalo WHERE EMAIL = :email`,
-            [session?.user?.email],
-        )
+    const userId = await getUserId(connection, session?.user?.email);
 
-        const result = await connection.execute(
-          `INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES (:userID, :kepid)`,
-          [userID.rows[0].FELHASZNALOID, id],
-          { autoCommit: true }
-        );
-        await connection.close();
-        
-        // if (!result) {
-        //   return { error: "Gatya likeolas"}
-        // }
-    
-      } catch (error) {
-        console.error(error);
-        return { error: "like error"}
-      }
+    await connection.execute(
+      `INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES (:userID, :kepid)`,
+      [userId, id],
+      { autoCommit: true }
+    );
+    await connection.close();
 
+    // if (!result) {
+    //   return { error: "Gatya likeolas"}
+    // }
+  } catch (error) {
+    console.error(error);
+    return { error: "like error" };
+  }
 }
 
+interface LikeRow {
+  LIKES: number;
+}
+
+interface IsLikedRow {
+  ISLIKED: number;
+}
+
+
 export async function getLikes(id: number) {
-    try {
-        const connection = await oracledb.getConnection({
-          user: "test",
-          password: mypw,
-          connectString: "159.69.117.79:1521/PODB",
-        });
+  try {
+    const connection = await getConnection();
 
-        const session = await auth();
+    const session = await auth();
+    const userId = await getUserId(connection, session?.user?.email);
 
-        const result = await connection.execute(
-            `SELECT COUNT(*) AS likes FROM KEPETLIKEOL WHERE KepID = :id`,
-            [id],
-        );
+    const result = await connection.execute(
+      `SELECT COUNT(*) AS likes FROM KEPETLIKEOL WHERE KepID = :id`,
+      [id]
+    );
 
-        const isLikedResult = await connection.execute(
-            `SELECT COUNT(*) AS isLiked FROM KEPETLIKEOL WHERE KepID = :id AND FelhasznaloID = (SELECT FelhasznaloID FROM Felhasznalo WHERE EMAIL = :email)`,
-            [id, session?.user?.email],
-        );
+    const isLiked1 = await connection.execute(
+      `SELECT CASE
+      WHEN COUNT(*) > 0 THEN 1
+      ELSE 0
+    END AS isLiked
+FROM KEPETLIKEOL
+WHERE KepID = :id 
+AND FelhasznaloID = :userid`,
+      [id, userId]
+    );
+    
+    const likes = ((result.rows?.[0] as LikeRow)?.LIKES) || 0;
+const isLiked = ((isLiked1.rows?.[0] as IsLikedRow)?.ISLIKED) === 1;
+    console.log("isLIked", isLiked)
+    console.log("likes", likes)
+    
 
-        const likes = result.rows[0].LIKES;
-        const isLiked = isLikedResult.rows[0].ISLIKED > 0;
+    await connection.close();
 
-        await connection.close();
-
-        return { likes, isLiked };
-        
-    } catch (error) {
-        console.error(error);
-        return { error: "get likes error" }
-    }
+    return { likes, isLiked };
+  } catch (error) {
+    console.error(error);
+    return { error: "get likes error" };
+  }
 }
 
 export async function dislike(id: number) {
-    try {
-        const connection = await oracledb.getConnection({
-          user: "test",
-          password: mypw,
-          connectString: "159.69.117.79:1521/PODB",
-        });
+  try {
+    const connection = await getConnection();
 
-        const session = await auth();
+    const session = await auth();
 
-        const userID = await connection.execute(
-            `SELECT FelhasznaloID FROM Felhasznalo WHERE EMAIL = :email`,
-            [session?.user?.email],
-        )
+    const userId = await getUserId(connection, session?.user?.email);
 
-        const result = await connection.execute(
-          `DELETE FROM KEPETLIKEOL WHERE FelhasznaloID = :userID AND KepID = :kepid`,
-          [userID.rows[0].FELHASZNALOID, id],
-          { autoCommit: true }
-        );
-        await connection.close();
-        
-        // if (!result) {
-        //   return { error: "Gatya likeolas"}
-        // }
-    
-      } catch (error) {
-        console.error(error);
-        return { error: "dislike error"}
-      }
+    await connection.execute(
+      `DELETE FROM KEPETLIKEOL WHERE FelhasznaloID = :userID AND KepID = :kepid`,
+      [userId, id],
+      { autoCommit: true }
+    );
+    await connection.close();
 
+    // if (!result) {
+    //   return { error: "Gatya likeolas"}
+    // }
+  } catch (error) {
+    console.error(error);
+    return { error: "dislike error" };
+  }
 }
 
 const CommentSchema = z.object({
-  comment: z.string().max(255)
-
+  comment: z.string().max(255),
 });
 
 export async function comment(id: number, formData: FormData) {

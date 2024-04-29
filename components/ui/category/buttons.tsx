@@ -1,4 +1,4 @@
-import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
+
 import Link from "next/link";
 import { deleteCategoryById } from "@/app/dashboard/categories/actions";
 
@@ -24,7 +24,7 @@ export function EditCategory({ id }: { id: number }) {
 }
 
 export function DeleteCategory({ id }: { id: number }) {
-  const deletee = deleteCategoryById.bind(null, id.toString());
+  const deletee = deleteCategoryById.bind(null, id);
 
   return (
     <form action={deletee}>

@@ -2,9 +2,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@nextui-org/react";
 import { Textarea } from "@/components/ui/textarea"; 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { upload } from "@/lib/actions";
+import { fetchCategories } from "@/lib/data";
 
-export function UploadForm() {
+export async function UploadForm() {
+  const kategoriak = await fetchCategories();
   return (
     <form action={upload}>
       <div className="grid gap-4">
@@ -15,6 +24,21 @@ export function UploadForm() {
         <div>
           <Label htmlFor="file">Title</Label>
           <Input type="text" name="title" placeholder="80s Trance Poster Synth Dragon" required/>
+        </div>
+        <div>
+        <Label htmlFor="kategoria">Category</Label>
+        <Select name="kategoria">
+          <SelectTrigger className="w-[180px]" >
+            <SelectValue placeholder="Select a category"/>
+          </SelectTrigger>
+          <SelectContent >
+            {kategoriak.map((kategoria, index) => (
+              <SelectItem key={index} value={kategoria.KATEGORIANEV}>
+                {kategoria.KATEGORIANEV}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
         </div>
         <div>
           <Label htmlFor="file">Prompt</Label>

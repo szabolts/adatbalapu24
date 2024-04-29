@@ -1,5 +1,5 @@
 import oracledb from "oracledb";
-import { User, Kep, Kategoria } from "./types";
+import { User, Kep, Kategoria, KategoriaEsElsoKep } from "./types";
 import { auth } from "@/auth";
 import { getConnection } from "@/lib/db";
 
@@ -28,17 +28,17 @@ export async function fetchUserByEmail() {
   try {
     const connection = await getConnection();
 
-  const result = await connection.execute(
-    `SELECT *
+    const result = await connection.execute(
+      `SELECT *
          FROM FELHASZNALO
          WHERE EMAIL = :email`,
-    [email]
-  );
+      [email]
+    );
 
-  // console.log(result.rows);
-  await connection.close();
-  return result.rows as User[];
-} catch (error) {
+    // console.log(result.rows);
+    await connection.close();
+    return result.rows as User[];
+  } catch (error) {
     console.error("Failed to fetch user:", error);
     throw new Error("Failed to fetch user.");
   }
@@ -63,16 +63,18 @@ export async function fetchKepek() {
   const connection = await getConnection();
 
   const result = await connection.execute(
-    `SELECT *
-         FROM KEP
-         ORDER BY KEPID
-         DESC`,
+    `SELECT KEP.*, FELHASZNALO.Felhasznalonev, KATEGORIA.NEV AS KATEGORIA_NEV
+     FROM KEP
+     JOIN FELHASZNALO ON KEP.FELHASZNALOID = FELHASZNALO.FelhasznaloID
+     JOIN KATEGORIAJA ON KEP.KEPID = KATEGORIAJA.KEPID
+     JOIN KATEGORIA ON KATEGORIAJA.KATEGORIAID = KATEGORIA.KATEGORIAID
+     ORDER BY KEP.KEPID DESC`,
     []
   );
-  
+
   await connection.close();
 
-  return result.rows;
+  return result.rows as Kep[];
 }
 
 export async function fetchKepekByKategoria(id: number) {
@@ -111,7 +113,6 @@ export async function fetchKategoria(id: number) {
   await connection.close();
 
   return result.rows as Kategoria[];
-
 }
 
 export async function fetchCategories() {
@@ -139,8 +140,8 @@ export async function fetchCategories() {
   );
 
   await connection.close();
-  console.log("Categories: ", result.rows);
-  return result.rows;
+  // console.log("Categories: ", result.rows);
+  return result.rows as KategoriaEsElsoKep[];
 }
 
 export async function fetchKepekById(id: string) {
@@ -152,10 +153,12 @@ export async function fetchKepekById(id: string) {
   });
 
   const result = await connection.execute(
-    `SELECT KEP.*, FELHASZNALO.FELHASZNALONEV
+    `SELECT KEP.*, FELHASZNALO.FELHASZNALONEV, KATEGORIA.NEV AS KATEGORIA_NEV
      FROM KEP
      INNER JOIN FELHASZNALO ON KEP.FelhasznaloID = FELHASZNALO.FelhasznaloID
-     WHERE KepID = :id`,
+     INNER JOIN KATEGORIAJA ON KEP.KepID = KATEGORIAJA.KepID
+     INNER JOIN KATEGORIA ON KATEGORIAJA.KategoriaID = KATEGORIA.KategoriaID
+     WHERE KEP.KepID = :id`,
     [id]
   );
   // console.log(result.rows);
@@ -207,7 +210,7 @@ export async function getLikesByID(id: number) {
     }
 
     await connection.close();
-    console.log("LIKES: ", likes.rows);
+    // console.log("LIKES: ", likes.rows);
     return likes.rows;
   } catch (error) {
     console.error(error);
@@ -229,7 +232,7 @@ export async function fetchCommentsByID(id: number) {
     );
 
     await connection.close();
-    console.log("Comments: ", comments.rows);
+    // console.log("Comments: ", comments.rows);
     return comments.rows;
   } catch (error) {
     console.error(error);
@@ -237,28 +240,24 @@ export async function fetchCommentsByID(id: number) {
   }
 }
 
-
 export async function getKategoriak() {
-try {
+  try {
     const connection = await oracledb.getConnection({
       user: "test",
       password: mypw,
       connectString: "159.69.117.79:1521/PODB",
     });
 
-    const kategoriak = await connection.execute(
-      `SELECT * FROM KATEGORIA`
-    );
+    const kategoriak = await connection.execute(`SELECT * FROM KATEGORIA`);
 
     await connection.close();
-    console.log("Kategoriak: ", kategoriak.rows);
+    // console.log("Kategoriak: ", kategoriak.rows);
     return kategoriak.rows as Kategoria[];
-} catch (error) {
+  } catch (error) {
     console.error("Failed to fetch category:", error);
     throw new Error("Failed to fetch category.");
   }
-  } 
-
+}
 
 export async function getKategoriakByKepId(kepId: number) {
   try {
@@ -276,7 +275,7 @@ export async function getKategoriakByKepId(kepId: number) {
     );
 
     await connection.close();
-    console.log("Kategoriak by KepId: ", kategoriak.rows);
+    // console.log("Kategoriak by KepId: ", kategoriak.rows);
     return kategoriak.rows;
   } catch (error) {
     console.error(error);

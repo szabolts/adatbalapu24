@@ -1,5 +1,5 @@
 import oracledb from "oracledb";
-import { User, Kep, Kategoria, KategoriaEsElsoKep } from "./types";
+import { User, Kep, Kategoria, KategoriaEsElsoKep, TopLiked, TopUsersByUpload, TopUsersByReact, AvgLikesByCategories, KepKategoriak } from "./types";
 import { auth } from "@/auth";
 import { getConnection } from "@/lib/db";
 
@@ -63,12 +63,12 @@ export async function fetchKepek() {
   const connection = await getConnection();
 
   const result = await connection.execute(
-    `SELECT KEP.*, FELHASZNALO.Felhasznalonev, KATEGORIA.NEV AS KATEGORIA_NEV
-     FROM KEP
-     JOIN FELHASZNALO ON KEP.FELHASZNALOID = FELHASZNALO.FelhasznaloID
-     JOIN KATEGORIAJA ON KEP.KEPID = KATEGORIAJA.KEPID
-     JOIN KATEGORIA ON KATEGORIAJA.KATEGORIAID = KATEGORIA.KATEGORIAID
-     ORDER BY KEP.KEPID DESC`,
+    `SELECT DISTINCT KEP.*, FELHASZNALO.Felhasznalonev
+    FROM KEP
+    JOIN FELHASZNALO ON KEP.FELHASZNALOID = FELHASZNALO.FelhasznaloID
+    JOIN KATEGORIAJA ON KEP.KEPID = KATEGORIAJA.KEPID
+    JOIN KATEGORIA ON KATEGORIAJA.KATEGORIAID = KATEGORIA.KATEGORIAID
+    ORDER BY KEP.KEPID DESC`,
     []
   );
 
@@ -146,11 +146,7 @@ export async function fetchCategories() {
 
 export async function fetchKepekById(id: string) {
   console.log("iiiiiddeeee: ", id);
-  const connection = await oracledb.getConnection({
-    user: "test",
-    password: mypw,
-    connectString: "159.69.117.79:1521/PODB",
-  });
+  const connection = await getConnection();
 
   const result = await connection.execute(
     `SELECT KEP.*, FELHASZNALO.FELHASZNALONEV, KATEGORIA.NEV AS KATEGORIA_NEV
@@ -168,11 +164,7 @@ export async function fetchKepekById(id: string) {
 }
 
 export const getAdminByEmail = async (email: string) => {
-  const connection = await oracledb.getConnection({
-    user: "test",
-    password: mypw,
-    connectString: "159.69.117.79:1521/PODB",
-  });
+  const connection = await getConnection();
 
   try {
     const user = await connection.execute(
@@ -191,11 +183,7 @@ export const getAdminByEmail = async (email: string) => {
 
 export async function getLikesByID(id: number) {
   try {
-    const connection = await oracledb.getConnection({
-      user: "test",
-      password: mypw,
-      connectString: "159.69.117.79:1521/PODB",
-    });
+    const connection = await getConnection();
 
     const likes = await connection.execute(
       `SELECT kepID, COUNT(*) AS likeok_szama
@@ -242,11 +230,7 @@ export async function fetchCommentsByID(id: number) {
 
 export async function getKategoriak() {
   try {
-    const connection = await oracledb.getConnection({
-      user: "test",
-      password: mypw,
-      connectString: "159.69.117.79:1521/PODB",
-    });
+    const connection = await getConnection();
 
     const kategoriak = await connection.execute(`SELECT * FROM KATEGORIA`);
 
@@ -261,11 +245,7 @@ export async function getKategoriak() {
 
 export async function getKategoriakByKepId(kepId: number) {
   try {
-    const connection = await oracledb.getConnection({
-      user: "test",
-      password: mypw,
-      connectString: "159.69.117.79:1521/PODB",
-    });
+    const connection = await getConnection();
 
     const kategoriak = await connection.execute(
       `SELECT KATEGORIA.* FROM KATEGORIA
@@ -276,20 +256,16 @@ export async function getKategoriakByKepId(kepId: number) {
 
     await connection.close();
     // console.log("Kategoriak by KepId: ", kategoriak.rows);
-    return kategoriak.rows;
+    return kategoriak.rows as KepKategoriak[];
   } catch (error) {
     console.error(error);
-    return { error: "error fetching categories by image ID" };
+    throw new Error("Failed to fetch categories by picture ID.");
   }
 }
 
 export async function getKommentLikeById(commentId: number) {
   try {
-    const connection = await oracledb.getConnection({
-      user: "test",
-      password: mypw,
-      connectString: "159.69.117.79:1521/PODB",
-    });
+    const connection = await getConnection();
 
     const likes = await connection.execute(
       `SELECT COUNT(*) AS likeok_szama
@@ -304,5 +280,249 @@ export async function getKommentLikeById(commentId: number) {
   } catch (error) {
     console.error(error);
     return { error: "error fetching comment likes" };
+  }
+}
+
+export async function getTopLikedPictures() {
+  try {
+    const connection = await getConnection();
+
+    const topLikedPictures = await connection.execute(
+      `SELECT 
+        k.KepID,
+        k.Cim,
+        k.Fajl_eleresi_utvonal,
+        f.Felhasznalonev,
+        COUNT(kl.FelhasznaloID) AS Likeok_szama
+      FROM 
+        Kep k
+      JOIN 
+        Felhasznalo f ON k.FelhasznaloID = f.FelhasznaloID
+      LEFT JOIN 
+        KepetLikeol kl ON k.KepID = kl.KepID
+      GROUP BY 
+        k.KepID, k.Cim, k.Fajl_eleresi_utvonal, f.Felhasznalonev
+      ORDER BY 
+        Likeok_szama DESC
+      FETCH FIRST 8 ROWS ONLY`,
+      []
+    );
+
+    await connection.close();
+    // console.log("Top liked pictures: ", topLikedPictures.rows);
+    return topLikedPictures.rows as TopLiked[];
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch top liked pictures.");
+  }
+}
+
+
+export async function getTopUsersUpload() {
+  try {
+    const connection = await getConnection();
+
+    const topUsers = await connection.execute(
+      `SELECT 
+        f.FelhasznaloID,
+        f.Felhasznalonev,
+        COUNT(k.KepID) AS Feltoltott_kepek_szama
+      FROM 
+        Felhasznalo f
+      LEFT JOIN 
+        Kep k ON f.FelhasznaloID = k.FelhasznaloID
+      GROUP BY 
+        f.FelhasznaloID, f.Felhasznalonev
+      ORDER BY 
+        Feltoltott_kepek_szama DESC
+      FETCH FIRST 10 ROWS ONLY`,
+      []
+    );
+
+    await connection.close();
+    // console.log("Top liked pictures: ", topLikedPictures.rows);
+    return topUsers.rows as TopUsersByUpload[];
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch top liked pictures.");
+  }
+}
+
+
+export async function getTopUsersByReaction() {
+  try {
+    const connection = await getConnection();
+
+    const topUsersReact = await connection.execute(
+      `SELECT 
+        f.FelhasznaloID,
+        f.Felhasznalonev,
+        COALESCE(SUM(kl.Likeok_szama), 0) AS Likeok_szama,
+        COALESCE(SUM(ko.Kommentek_szama), 0) AS Kommentek_szama,
+        COALESCE(SUM(kl.Likeok_szama), 0) + COALESCE(SUM(ko.Kommentek_szama), 0) AS Osszes_reakcio_szama
+      FROM 
+        Felhasznalo f
+      LEFT JOIN 
+          (SELECT 
+              FelhasznaloID,
+              COUNT(*) AS Likeok_szama
+          FROM 
+              KepetLikeol
+          GROUP BY 
+              FelhasznaloID) kl ON f.FelhasznaloID = kl.FelhasznaloID
+      LEFT JOIN 
+          (SELECT 
+              FelhasznaloID,
+              COUNT(*) AS Kommentek_szama
+          FROM 
+              Komment
+          GROUP BY 
+              FelhasznaloID) ko ON f.FelhasznaloID = ko.FelhasznaloID
+      GROUP BY 
+        f.FelhasznaloID, f.Felhasznalonev
+      ORDER BY 
+        Osszes_reakcio_szama DESC
+      FETCH FIRST 10 ROWS ONLY`,
+      []
+    );
+
+    await connection.close();
+    // console.log("Top liked pictures: ", topLikedPictures.rows);
+    return topUsersReact.rows as TopUsersByReact[];
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch top liked pictures.");
+  }
+}
+
+
+export async function getAvgLikesByCategories() {
+  try {
+    const connection = await getConnection();
+
+    const avgLikesByCategories = await connection.execute(
+      `SELECT 
+        kategoria.Nev AS Kategoria_nev,
+        AVG(COALESCE(kl.Likeok_szama, 0)) AS Atlagos_likeok_szama
+      FROM 
+        Kategoria kategoria
+      LEFT JOIN 
+        (SELECT 
+            k.KepID,
+            COUNT(kl.FelhasznaloID) AS Likeok_szama
+        FROM 
+            Kep k
+        LEFT JOIN 
+            KepetLikeol kl ON k.KepID = kl.KepID
+        GROUP BY 
+            k.KepID) kl ON kategoria.KategoriaID = kl.KepID
+      GROUP BY 
+        kategoria.Nev`,
+      []
+    );
+
+    await connection.close();
+    // console.log("Top liked pictures: ", topLikedPictures.rows);
+    return avgLikesByCategories.rows as AvgLikesByCategories[];
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch top liked pictures.");
+  }
+}
+
+export async function getAvgPicByCategory() {
+  try {
+    const connection = await getConnection();
+
+    const avgPicByCategory = await connection.execute(
+      `SELECT 
+        AVG(Kep_szama) AS Atlagos_kepek_szama
+      FROM 
+        (SELECT 
+            COUNT(*) AS Kep_szama
+        FROM 
+            Kep k
+        JOIN 
+            Kategoriaja kj ON k.KepID = kj.KepID
+        GROUP BY 
+            kj.KategoriaID) kategoriakepek`,
+      []
+    );
+
+    await connection.close();
+    // console.log("Top liked pictures: ", topLikedPictures.rows);
+    return avgPicByCategory.rows;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch top liked pictures.");
+  }
+}
+
+export async function getAbsoluteActivity() {
+  try {
+    const connection = await getConnection();
+
+    const absoluteActivity = await connection.execute(
+      `SELECT f.FelhasznaloID, f.Felhasznalonev, 
+        COALESCE(kl.KepLikeSzam, 0) AS KepLikeSzam, 
+        COALESCE(koml.KommentLikeSzam, 0) AS KommentLikeSzam,
+        COALESCE(k.KommentSzam, 0) AS KommentSzam,
+        COALESCE(kep.FeltoltottKepSzam, 0) AS FeltoltottKepSzam,
+        (COALESCE(kl.KepLikeSzam, 0) + COALESCE(koml.KommentLikeSzam, 0) + COALESCE(k.KommentSzam, 0) + COALESCE(kep.FeltoltottKepSzam, 0)) AS Aktivitas
+      FROM Felhasznalo f
+      LEFT JOIN (
+        SELECT FelhasznaloID, COUNT(*) AS KepLikeSzam
+        FROM KepetLikeol
+        GROUP BY FelhasznaloID
+      ) kl ON f.FelhasznaloID = kl.FelhasznaloID
+      LEFT JOIN (
+        SELECT FelhasznaloID, COUNT(*) AS KommentLikeSzam
+        FROM KommentetLikeol
+        GROUP BY FelhasznaloID
+      ) koml ON f.FelhasznaloID = koml.FelhasznaloID
+      LEFT JOIN (
+        SELECT FelhasznaloID, COUNT(*) AS KommentSzam
+        FROM Komment
+        GROUP BY FelhasznaloID
+      ) k ON f.FelhasznaloID = k.FelhasznaloID
+      LEFT JOIN (
+        SELECT FelhasznaloID, COUNT(*) AS FeltoltottKepSzam
+        FROM Kep
+        GROUP BY FelhasznaloID
+      ) kep ON f.FelhasznaloID = kep.FelhasznaloID
+      ORDER BY Aktivitas DESC
+      FETCH FIRST 8 ROW ONLY`,
+      []
+    );
+
+    await connection.close();
+    // console.log("Top liked pictures: ", topLikedPictures.rows);
+    return absoluteActivity.rows as TopUsersByReact[];
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch top liked pictures.");
+  }
+}
+
+
+export async function getBasicStats() {
+  try {
+    const connection = await getConnection();
+
+    const basicStats = await connection.execute(
+      `SELECT
+          (SELECT COUNT(*) FROM Kep) AS KepSzam,
+          (SELECT COUNT(*) FROM Kategoria) AS KategoriaSzam,
+          (SELECT COUNT(*) FROM Felhasznalo) AS FelhasznaloSzam
+      FROM dual`,
+      []
+    );
+
+    await connection.close();
+    // console.log("Top liked pictures: ", topLikedPictures.rows);
+    return basicStats.rows;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch top liked pictures.");
   }
 }

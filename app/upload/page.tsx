@@ -10,8 +10,10 @@ import { UploadForm } from "./upload-form";
 import { WavyBackground } from "@/components/ui/bg/wavy-background"; 
 import { BackgroundBeams } from "@/components/ui/bg/background-beams";
 import { Vortex } from "@/components/ui/bg/vortex";
+import { fetchCategories } from "@/lib/data";
 
-export default function Upload() {
+export default async function Upload() {
+  const kategoriak = await fetchCategories();
   return (
     <div className="min-h-[calc(100vh-65px)]  flex flex-row items-center justify-center ">
       {/* <Vortex
@@ -23,13 +25,13 @@ export default function Upload() {
         baseHue={120}
         className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full h-full"
       > */}
-      <Card className="max-w-4xl bg-black rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 ">
+      <Card className="max-w-4xl bg-black rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 w-[400px] ">
         <CardHeader>
           <CardTitle className="flex flex-row justify-center ">Upload your image</CardTitle>
           {/* <CardDescription>Card Description</CardDescription> */}
         </CardHeader>
         <CardContent>
-          <UploadForm />
+          <UploadForm kategoriak={kategoriak} />
         </CardContent>
       </Card>  
     {/* </Vortex> */}

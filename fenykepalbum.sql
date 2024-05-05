@@ -167,213 +167,259 @@ VALUES ('cluhpp660000064yt71gwfumc','asdasdasd','asd', 'asd', 'asdasd@gmail.com'
 
 
 -- Kepek
+-- 1
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Soft Abstract 3D Cityscape', TIMESTAMP '2024-03-21 10:00:00', '/kepek/soft_abstrack_3d/sa1.png', 'Cityscape, in the style of conceptual minimalist sculpture, surrealistic juxtapositions, light white and light pink, realistic yet imaginative, i cant believe how beautiful this is, fine lines, delicate curves, playful cartoonish scenes, unreal engine', 'clu1nfivd000gw2qscsge0hpn');
 
+-- 2
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Soft Abstract 3D Hamburger', TIMESTAMP '2024-03-21 10:15:00', '/kepek/soft_abstrack_3d/sa2.png', 'Hamburger, in the style of conceptual minimalist sculpture, surrealistic juxtapositions, light white and light pink, realistic yet imaginative, i cant believe how beautiful this is, fine lines, delicate curves, playful cartoonish scenes, unreal engine', 'clu1nhihu000hw2qs603maryw');
 
+-- 3
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Soft Abstract 3D Mountains', TIMESTAMP '2024-03-21 10:30:00', '/kepek/soft_abstrack_3d/sa3.png', 'Mountains, in the style of conceptual minimalist sculpture, surrealistic juxtapositions, light white and light pink, realistic yet imaginative, i cant believe how beautiful this is, fine lines, delicate curves, playful cartoonish scenes, unreal engine ', 'clu1nhylp000iw2qs1pc003nw');
 
+-- 4
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Soft Abstract 3D Surfer', TIMESTAMP '2024-03-21 10:45:00', '/kepek/soft_abstrack_3d/sa4.png', ' Surfer, in the style of conceptual minimalist sculpture, surrealistic juxtapositions, light white and light pink, realistic yet imaginative, i cant believe how beautiful this is, fine lines, delicate curves, playful cartoonish scenes, unreal engine', 'clu1nk78q000mw2qsgxj51ch5');
 
+-- 5
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Soft Abstract 3D Tree', TIMESTAMP '2024-03-21 11:00:00', '/kepek/soft_abstrack_3d/sa5.png', 'Tree, in the style of conceptual minimalist sculpture, surrealistic juxtapositions, light white and light pink, realistic yet imaginative, i cant believe how beautiful this is, fine lines, delicate curves, playful cartoonish scenes, unreal engine', 'clu1nl6dx000nw2qsckhlgydb');
 
+-- 6
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Surrealist Comic Hamburger', TIMESTAMP '2024-03-21 11:15:00', '/kepek/surrealist_comic/sc1.png', 'Hamburger in the style of futuristic contraptions, detailed colorful comic, light black and purple, detailed comic book art, luminescent color scheme, detailed illustration, nature, surreal ', 'clu1nlvao000ow2qs0lbw0anj');
 
+-- 7
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Surrealist Comic Bicycle', TIMESTAMP '2024-03-21 11:30:00', '/kepek/surrealist_comic/sc2.png', 'Bicycle in the style of futuristic contraptions, detailed colorful comic, light black and purple, detailed comic book art, luminescent color scheme, detailed illustration, nature, surreal ', 'clu1nmjju000pw2qs2s47ch1g');
 
+-- 8
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Surrealist Comic Child', TIMESTAMP '2024-03-21 11:45:00', '/kepek/surrealist_comic/sc3.png', 'Child in the style of futuristic contraptions, detailed colorful comic, light black and purple, detailed comic book art, luminescent color scheme, detailed illustration, nature, surreal ', 'cltyz4g0v0000pe42cl9l0ddh');
 
+-- 9
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Surrealist Comic Cityscape', TIMESTAMP '2024-03-21 12:00:00', '/kepek/surrealist_comic/sc4.png', 'Cityscape in the style of futuristic contraptions, detailed colorful comic, light black and purple, detailed comic book art, luminescent color scheme, detailed illustration, nature, surreal ', 'clu1nimbl000jw2qse20tgrmv');
 
+-- 10
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Surrealist Comic Cat', TIMESTAMP '2024-03-21 12:15:00', '/kepek/surrealist_comic/sc5.png', 'Cat in the style of futuristic contraptions, detailed colorful comic, light black and purple, detailed comic book art, luminescent color scheme, detailed illustration, nature, surreal ', 'clu1nj76o000kw2qs6ofu75sv');
 
+-- 11
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Vaporwave Illustration Jungle', TIMESTAMP '2024-03-21 12:30:00', '/kepek/vaporwave_illustration/vi1.png', 'a drawing of a Jungle, in the style of light pink and light aquamarine, grid work, vintage aesthetics, post-internet aesthetics ', 'clu1njqif000lw2qsgba33q32');
 
+-- 12
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Vaporwave Illustration Bridge', TIMESTAMP '2024-03-21 12:45:00', '/kepek/vaporwave_illustration/vi2.png', 'a drawing of a Bridge, in the style of light pink and light aquamarine, grid work, vintage aesthetics, post-internet aesthetics ', 'cltboudsd0000w9421jnfdsqt');
 
+-- 13
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Vaporwave Illustration Waterfall', TIMESTAMP '2024-03-21 13:00:00', '/kepek/vaporwave_illustration/vi3.png', 'a drawing of a Waterfall, in the style of light pink and light aquamarine, grid work, vintage aesthetics, post-internet aesthetics ', 'clu1mjbl20000w2qsgpei6a2q');
 
+-- 14
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Vaporwave Illustration Mountains', TIMESTAMP '2024-03-21 13:15:00', '/kepek/vaporwave_illustration/vi4.png', 'a drawing of a Mountains, in the style of light pink and light aquamarine, grid work, vintage aesthetics, post-internet aesthetics', 'clu1mr3240000w2qsf7z778qc');
 
+-- 15
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Vaporwave Illustration Shark', TIMESTAMP '2024-03-21 13:30:00', '/kepek/vaporwave_illustration/vi5.png', 'a drawing of a Shark, in the style of light pink and light aquamarine, grid work, vintage aesthetics, post-internet aesthetics ', 'clu1ms2hi0001w2qs22s3exln');
 
+-- 16
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('50s High Detail Family', TIMESTAMP '2024-03-21 14:00:00', '/kepek/50s_hig_detail/hd1.png', '1950s vintage clipart retro Family, in the style of green and azure, realist portraiture, associated press photo, realist: lifelike accuracy', 'clu1mr3240000w2qsf7z778qc');
 
+-- 17
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('50s High Detail Hiker', TIMESTAMP '2024-03-21 14:15:00', '/kepek/50s_hig_detail/hd2.png', '1950s vintage clipart retro Hiker, in the style of green and azure, realist portraiture, associated press photo, realist: lifelike accuracy', 'clu1ms2hi0001w2qs22s3exln');
 
+-- 18
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('50s High Detail Street Vendor', TIMESTAMP '2024-03-21 14:30:00', '/kepek/50s_hig_detail/hd3.png', '1950s vintage clipart retro Street Vendor, in the style of green and azure, realist portraiture, associated press photo, realist: lifelike accuracy', 'cltyz4g0v0000pe42cl9l0ddh');
 
+-- 19
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('50s High Detail Cow', TIMESTAMP '2024-03-21 14:45:00', '/kepek/50s_hig_detail/hd4.png', '1950s vintage clipart retro Cow, in the style of green and azure, realist portraiture, associated press photo, realist: lifelike accuracy', 'clu1nmjju000pw2qs2s47ch1g');
 
+-- 20
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('50s High Detail Jungle', TIMESTAMP '2024-03-21 15:00:00', '/kepek/50s_hig_detail/hd5.png', '1950s vintage clipart retro Jungle, in the style of green and azure, realist portraiture, associated press photo, realist: lifelike accuracy', 'clu1ms2hi0001w2qs22s3exln');
 
+-- 21
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Retrossaince Jungle', TIMESTAMP '2024-03-21 15:15:00', '/kepek/Retrossaince/rss1.png', 'a black drawing showing an ancient Jungle, in the style of light pink and light gray, animated gifs, greek art and architecture, vintage aesthetics, ocean academia, hand-drawn animation, marble', 'clu1nhylp000iw2qs1pc003nw');
 
+-- 22
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Retrossaince Family', TIMESTAMP '2024-03-21 15:30:00', '/kepek/Retrossaince/rss2.png', 'a black drawing showing an ancient Family, in the style of light pink and light gray, animated gifs, greek art and architecture, vintage aesthetics, ocean academia, hand-drawn animation, marble', 'clu1ms2hi0001w2qs22s3exln');
 
+-- 23
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Retrossaince Meadows', TIMESTAMP '2024-03-21 15:45:00', '/kepek/Retrossaince/rss3.png', 'a black drawing showing an ancient Meadows, in the style of light pink and light gray, animated gifs, greek art and architecture, vintage aesthetics, ocean academia, hand-drawn animation, marble', 'clu1nlvao000ow2qs0lbw0anj');
 
+-- 24
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Retrossaince Waterfall', TIMESTAMP '2024-03-21 16:00:00', '/kepek/Retrossaince/rss4.png', 'a black drawing showing an ancient Waterfall, in the style of light pink and light gray, animated gifs, greek art and architecture, vintage aesthetics, ocean academia, hand-drawn animation, marble', 'clu1ms2hi0001w2qs22s3exln');
 
+-- 25
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Retrossaince Group of people', TIMESTAMP '2024-03-21 16:15:00', '/kepek/Retrossaince/rss5.png', 'a black drawing showing an ancient Group of people, in the style of light pink and light gray, animated gifs, greek art and architecture, vintage aesthetics, ocean academia, hand-drawn animation, marble', 'clu1nhihu000hw2qs603maryw');
 
--- INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
--- VALUES ('Retro Futurism Family', TIMESTAMP '2024-03-21 16:30:00', '/kepek/retro_futurism/rf1.png', 'Family, in the style of retro-futuristic propaganda, frequent use of yellow, romanticized views, uncanny valley realism, die brücke, otherworldly visions, les automatistes --ar 2:1', 'clu1mzax60006w2qsgi1o0hqs');
-
--- INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
--- VALUES ('Retro Futurism Group of people', TIMESTAMP '2024-03-21 16:45:00', '/kepek/retro_futurism/rf2.png', 'Group of people, in the style of retro-futuristic propaganda, frequent use of yellow, romanticized views, uncanny valley realism, die brücke, otherworldly visions, les automatistes --ar 2:1', 'clu1nhihu000hw2qs603maryw');
-
--- INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
--- VALUES ('Retro Futurism Jungle', TIMESTAMP '2024-03-21 17:00:00', '/kepek/retro_futurism/rf3.png', 'Jungle, in the style of retro-futuristic propaganda, frequent use of yellow, romanticized views, uncanny valley realism, die brücke, otherworldly visions, les automatistes --ar 2:1', 'clu1nhihu000hw2qs603maryw');
-
--- INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
--- VALUES ('Retro Futurism Mountains', TIMESTAMP '2024-03-21 17:15:00', '/kepek/retro_futurism/rf4.png', 'Mountains, in the style of retro-futuristic propaganda, frequent use of yellow, romanticized views, uncanny valley realism, die brücke, otherworldly visions, les automatistes --ar 2:1', 'clu1mzax60006w2qsgi1o0hqs');
-
--- INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
--- VALUES ('Retro Futurism Meadows', TIMESTAMP '2024-03-21 17:30:00', '/kepek/retro_futurism/rf5.png', 'Meadows, in the style of retro-futuristic propaganda, frequent use of yellow, romanticized views, uncanny valley realism, die brücke, otherworldly visions, les automatistes --ar 2:1', 'cltyz4g0v0000pe42cl9l0ddh');
-
--- INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
--- VALUES ('Retro Futurism Market', TIMESTAMP '2024-03-21 17:45:00', '/kepek/retro_futurism/rf6.png', 'Market, in the style of retro-futuristic propaganda, frequent use of yellow, romanticized views, uncanny valley realism, die brücke, otherworldly visions, les automatistes --ar 2:1', 'clu1nhihu000hw2qs603maryw');
-
+-- 26
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('80s Trance Poster Synth Glowing Metropolis', TIMESTAMP '2024-03-21 20:15:00', '/kepek/80s_trance_poster/tp1.png', 'synth glowing metropolis in the style of minimalist 80s trance poster illustration, neon, bold, color-blocked compositions, geometric, faded', 'clu1nhihu000hw2qs603maryw');
 
+-- 27
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('80s Trance Poster Synth Pinball Arcade Game', TIMESTAMP '2024-03-21 20:30:00', '/kepek/80s_trance_poster/tp2.png', 'synth pinball arcade game in the style of minimalist 80s trance poster illustration, neon, bold, color-blocked compositions, geometric, faded', 'clu1mzax60006w2qsgi1o0hqs');
 
+-- 28
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('80s Trance Poster Synth Neon Palm Trees', TIMESTAMP '2024-03-21 20:45:00', '/kepek/80s_trance_poster/tp3.png', 'synth neon palm trees in the style of minimalist 80s trance poster illustration, neon, bold, color-blocked compositions, geometric, faded', 'clu1nhihu000hw2qs603maryw');
 
+-- 29
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('80s Trance Poster Synth Cyberpunk DJ Booth', TIMESTAMP '2024-03-21 21:00:00', '/kepek/80s_trance_poster/tp4.png', 'synth cyberpunk DJ booth in the style of minimalist 80s trance poster illustration, neon, bold, color-blocked compositions, geometric, faded', 'cltyz4g0v0000pe42cl9l0ddh');
 
+-- 30
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('80s Trance Poster Synth Dragon', TIMESTAMP '2024-03-21 21:15:00', '/kepek/80s_trance_poster/tp5.png', 'synth dragon in the style of minimalist 80s trance poster illustration, neon, bold, color-blocked compositions, geometric, faded', 'clu1nhihu000hw2qs603maryw');
 
+-- 31
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Neo Futuristic Meadows', TIMESTAMP '2024-03-21 21:30:00', '/kepek/neo_futuristic/nf1.png', 'Meadows in the style of neo futuristic, neon bright, illustrated, high tech, highly detail, bright colors, androids', 'clu1nhihu000hw2qs603maryw');
 
+-- 32
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Neo Futuristic Bookstore', TIMESTAMP '2024-03-21 21:45:00', '/kepek/neo_futuristic/nf2.png', 'Bookstore in the style of neo futuristic, neon bright, illustrated, high tech, highly detail, bright colors, androids', 'clu1nhihu000hw2qs603maryw');
 
+-- 33
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Neo Futuristic Waterfall', TIMESTAMP '2024-03-21 22:00:00', '/kepek/neo_futuristic/nf3.png', 'Waterfall in the style of neo futuristic, neon bright, illustrated, high tech, highly detail, bright colors, androids', 'clu1nhihu000hw2qs603maryw');
 
+-- 34
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Neo Futuristic Market', TIMESTAMP '2024-03-21 22:15:00', '/kepek/neo_futuristic/nf4.png', 'Market in the style of neo futuristic, neon bright, illustrated, high tech, highly detail, bright colors, androids', 'clu1nhihu000hw2qs603maryw');
 
+-- 35
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Neo Futuristic Mountains', TIMESTAMP '2024-03-21 22:30:00', '/kepek/neo_futuristic/nf5.png', 'Mountains in the style of neo futuristic, neon bright, illustrated, high tech, highly detail, bright colors, androids', 'clu1nhihu000hw2qs603maryw');
 
+-- 36
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Neo Futuristic Hiker', TIMESTAMP '2024-03-21 22:45:00', '/kepek/neo_futuristic/nf6.png', 'Hiker in the style of neo futuristic, neon bright, illustrated, high tech, highly detail, bright colors, androids', 'clu1nhihu000hw2qs603maryw');
 
+-- 37
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Neo Futuristic Bridge', TIMESTAMP '2024-03-21 23:00:00', '/kepek/neo_futuristic/nf7.png', 'Bridge in the style of neo futuristic, neon bright, illustrated, high tech, highly detail, bright colors, androids', 'clu1nhihu000hw2qs603maryw');
 
+-- 38
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
-VALUES ('Vaporwave Neon Bike', TIMESTAMP '2024-04-21 23:00:00', '/kepek/vaporwave_neon/vn1.png', 'Bicycle in the style of vaporwave, a variety of light posters and blown up circles with ethereal outlines, grandiose ruins, vibrant hues master, gold and cyan, colorful gardens, resin, warped, studio photography, fashion photography', 'clu1nhihu000hw2qs603maryw');
+VALUES ('Vaporwave Neon Bike', TIMESTAMP '2024-04-21 23:00:00', '/kepek/vaporwave_neon/vn1.png', 'Bicycle in the style of vaporwave, a variety of light posters and blown up circles with ethereal outlines, grandiose ruins, vibrant hues master, gold and cyan, colorful gardens, resin, warped, studio photography, fashion photography', 'cltyz4g0v0000pe42cl9l0ddh');
 
+-- 39
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Vaporwave Neon Man', TIMESTAMP '2024-04-21 23:01:00', '/kepek/vaporwave_neon/vn2.png', 'Man in the style of vaporwave, a variety of light posters and blown up circles with ethereal outlines, grandiose ruins, vibrant hues master, gold and cyan, colorful gardens, resin, warped, studio photography, fashion photography', 'clu1nhihu000hw2qs603maryw');
 
+-- 40
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Vaporwave Neon Burger', TIMESTAMP '2024-04-21 23:03:00', '/kepek/vaporwave_neon/vn3.png', 'Hamburger in the style of vaporwave, a variety of light posters and blown up circles with ethereal outlines, grandiose ruins, vibrant hues master, gold and cyan, colorful gardens, resin, warped, studio photography, fashion photography', 'clu1nhihu000hw2qs603maryw');
 
+-- 41
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
-VALUES ('Vaporwave Neon Three', TIMESTAMP '2024-04-21 23:05:00', '/kepek/vaporwave_neon/vn4.png', 'Tree in the style of vaporwave, a variety of light posters and blown up circles with ethereal outlines, grandiose ruins, vibrant hues master, gold and cyan, colorful gardens, resin, warped, studio photography, fashion photography', 'clu1nhihu000hw2qs603maryw');
+VALUES ('Vaporwave Neon Tree', TIMESTAMP '2024-04-21 23:05:00', '/kepek/vaporwave_neon/vn4.png', 'Tree in the style of vaporwave, a variety of light posters and blown up circles with ethereal outlines, grandiose ruins, vibrant hues master, gold and cyan, colorful gardens, resin, warped, studio photography, fashion photography', 'clu1nhihu000hw2qs603maryw');
 
+-- 42
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
-VALUES ('Vaporwave Neon Cat', TIMESTAMP '2024-04-21 23:10:00', '/kepek/vaporwave_neon/vn5.png', 'Cat in the style of vaporwave, a variety of light posters and blown up circles with ethereal outlines, grandiose ruins, vibrant hues master, gold and cyan, colorful gardens, resin, warped, studio photography, fashion photography', 'clu1nhihu000hw2qs603maryw');
+VALUES ('Vaporwave Neon Cat', TIMESTAMP '2024-04-21 23:10:00', '/kepek/vaporwave_neon/vn5.png', 'Cat in the style of vaporwave, a variety of light posters and blown up circles with ethereal outlines, grandiose ruins, vibrant hues master, gold and cyan, colorful gardens, resin, warped, studio photography, fashion photography', 'clu1ms2hi0001w2qs22s3exln');
 
+-- 43
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Yellow Brutalism Surfer', TIMESTAMP '2024-04-21 23:11:00', '/kepek/yellow_brutalism/yb1.png', 'Surfer, in the style of energy-filled illustrations, industrial brutalism, yellow and magenta, enigmatic characters, lowbrow surrealism, blown-off-roof perspective ', 'clu1nhihu000hw2qs603maryw');
 
+-- 44
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
-VALUES ('Yellow Brutalism Flower', TIMESTAMP '2024-04-21 23:13:00', '/kepek/yellow_brutalism/yb2.png', 'Flower, in the style of energy-filled illustrations, industrial brutalism, yellow and magenta, enigmatic characters, lowbrow surrealism, blown-off-roof perspective ', 'clu1nhihu000hw2qs603maryw');
+VALUES ('Yellow Brutalism Flower', TIMESTAMP '2024-04-21 23:13:00', '/kepek/yellow_brutalism/yb2.png', 'Flower, in the style of energy-filled illustrations, industrial brutalism, yellow and magenta, enigmatic characters, lowbrow surrealism, blown-off-roof perspective ', 'clu1ms2hi0001w2qs22s3exln');
 
+-- 45
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Yellow Brutalism Tree', TIMESTAMP '2024-04-21 23:14:00', '/kepek/yellow_brutalism/yb3.png', 'Tree, in the style of energy-filled illustrations, industrial brutalism, yellow and magenta, enigmatic characters, lowbrow surrealism, blown-off-roof perspective ', 'clu1nhihu000hw2qs603maryw');
 
+-- 46
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
-VALUES ('Yellow Brutalism Mountains', TIMESTAMP '2024-04-21 23:19:00', '/kepek/yellow_brutalism/yb4.png', 'Mountains, in the style of energy-filled illustrations, industrial brutalism, yellow and magenta, enigmatic characters, lowbrow surrealism, blown-off-roof perspective ', 'clu1nhihu000hw2qs603maryw');
+VALUES ('Yellow Brutalism Mountains', TIMESTAMP '2024-04-21 23:19:00', '/kepek/yellow_brutalism/yb4.png', 'Mountains, in the style of energy-filled illustrations, industrial brutalism, yellow and magenta, enigmatic characters, lowbrow surrealism, blown-off-roof perspective ', 'cltyz4g0v0000pe42cl9l0ddh');
 
+-- 47
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
-VALUES ('Yellow Brutalism Bike', TIMESTAMP '2024-04-21 23:20:00', '/kepek/yellow_brutalism/yb5.png', 'Bicycle, in the style of energy-filled illustrations, industrial brutalism, yellow and magenta, enigmatic characters, lowbrow surrealism, blown-off-roof perspective ', 'clu1nhihu000hw2qs603maryw');
+VALUES ('Yellow Brutalism Bike', TIMESTAMP '2024-04-21 23:20:00', '/kepek/yellow_brutalism/yb5.png', 'Bicycle, in the style of energy-filled illustrations, industrial brutalism, yellow and magenta, enigmatic characters, lowbrow surrealism, blown-off-roof perspective ', 'clu1ms2hi0001w2qs22s3exln');
 
+-- 48
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Intrincate Psychedelic Surfer', TIMESTAMP '2024-04-21 23:22:00', '/kepek/intrincate_psyhedelic/ip1.png', 'Surfer in the style of intricate psychedelic landscapes, flat illustrations, 2d game art, qajar art, forestpunk, high resolution, contemporary take on medieval art', 'clu1nhihu000hw2qs603maryw');
 
+-- 49
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
-VALUES ('Intrincate Psychedelic City', TIMESTAMP '2024-04-21 23:23:00', '/kepek/intrincate_psyhedelic/ip2.png', 'Cityscape in the style of intricate psychedelic landscapes, flat illustrations, 2d game art, qajar art, forestpunk, high resolution, contemporary take on medieval art', 'clu1nhihu000hw2qs603maryw');
+VALUES ('Intrincate Psychedelic City', TIMESTAMP '2024-04-21 23:23:00', '/kepek/intrincate_psyhedelic/ip2.png', 'Cityscape in the style of intricate psychedelic landscapes, flat illustrations, 2d game art, qajar art, forestpunk, high resolution, contemporary take on medieval art', 'cltyz4g0v0000pe42cl9l0ddh');
 
+-- 50
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
-VALUES ('Intrincate Psychedelic Boat', TIMESTAMP '2024-04-21 23:24:00', '/kepek/intrincate_psyhedelic/ip3.png', 'Boat in the style of intricate psychedelic landscapes, flat illustrations, 2d game art, qajar art, forestpunk, high resolution, contemporary take on medieval art', 'clu1nhihu000hw2qs603maryw');
+VALUES ('Intrincate Psychedelic Boat', TIMESTAMP '2024-04-21 23:24:00', '/kepek/intrincate_psyhedelic/ip3.png', 'Boat in the style of intricate psychedelic landscapes, flat illustrations, 2d game art, qajar art, forestpunk, high resolution, contemporary take on medieval art', 'clu1ms2hi0001w2qs22s3exln');
 
+-- 51
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Intrincate Psychedelic Flower', TIMESTAMP '2024-04-21 23:26:00', '/kepek/intrincate_psyhedelic/ip4.png', 'Flower in the style of intricate psychedelic landscapes, flat illustrations, 2d game art, qajar art, forestpunk, high resolution, contemporary take on medieval art', 'clu1nhihu000hw2qs603maryw');
 
+-- 52
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
-VALUES ('Intrincate Psychedelic Tree', TIMESTAMP '2024-04-21 23:27:00', '/kepek/intrincate_psyhedelic/ip5.png', 'Tree in the style of intricate psychedelic landscapes, flat illustrations, 2d game art, qajar art, forestpunk, high resolution, contemporary take on medieval art', 'clu1nhihu000hw2qs603maryw');
+VALUES ('Intrincate Psychedelic Tree', TIMESTAMP '2024-04-21 23:27:00', '/kepek/intrincate_psyhedelic/ip5.png', 'Tree in the style of intricate psychedelic landscapes, flat illustrations, 2d game art, qajar art, forestpunk, high resolution, contemporary take on medieval art', 'cltyz4g0v0000pe42cl9l0ddh');
 
+-- 53
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Intrincate Psychedelic Woman', TIMESTAMP '2024-04-22 23:27:00', '/kepek/intrincate_psyhedelic/ip6.png', 'Woman in the style of intricate psychedelic landscapes, flat illustrations, 2d game art, qajar art, forestpunk, high resolution, contemporary take on medieval art. ', 'clu1nhihu000hw2qs603maryw');
 
+-- 54
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Sci-fi Distopia Bookstore', TIMESTAMP '2024-04-23 23:00:00', '/kepek/scifi_distopia/sd1.png', 'Bookstore in the style of sci-fi distopia, high contrast, hyper realistic, fantasy, bright colors', 'clu1nhihu000hw2qs603maryw');
 
+-- 55
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Sci-fi Distopia Street Vendor', TIMESTAMP '2024-04-23 23:01:00', '/kepek/scifi_distopia/sd2.png', 'Street Vendor in the style of sci-fi distopia, high contrast, hyper realistic, fantasy, bright colors', 'clu1nhihu000hw2qs603maryw');
 
+-- 56
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Sci-fi Distopia Meadows', TIMESTAMP '2024-04-23 23:05:00', '/kepek/scifi_distopia/sd3.png', 'Meadows in the style of sci-fi distopia, high contrast, hyper realistic, fantasy, bright colors', 'clu1nhihu000hw2qs603maryw');
 
+-- 57
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Sci-fi Distopia Cityscape', TIMESTAMP '2024-04-23 23:10:00', '/kepek/scifi_distopia/sd4.png', 'Cityscape in the style of sci-fi distopia, high contrast, hyper realistic, fantasy, bright colors', 'clu1nhihu000hw2qs603maryw');
 
+-- 58
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Sci-fi Distopia Mountains', TIMESTAMP '2024-04-23 23:11:00', '/kepek/scifi_distopia/sd5.png', 'Mountains in the style of sci-fi distopia, high contrast, hyper realistic, fantasy, bright colors', 'clu1nhihu000hw2qs603maryw');
 
+-- 59
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Sci-fi Distopia Tree', TIMESTAMP '2024-04-23 23:15:00', '/kepek/scifi_distopia/sd6.png', 'Tree in the style of sci-fi distopia, high contrast, hyper realistic, fantasy, bright colors', 'clu1nhihu000hw2qs603maryw');
 
+-- 60
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Orange Hallucination Cityscape', TIMESTAMP '2024-04-26 23:16:00', '/kepek/orange_hallucination/oh1.png', 'Cityscape, in the style of pictorial fabrics, cutouts, illuminated visions, light orange and light green, chinapunk, collage, iconic album covers, colorful moebius, storybook illustrations. ', 'clu1nhihu000hw2qs603maryw');
 
+-- 61
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Orange Hallucination Mountains', TIMESTAMP '2024-04-26 23:17:00', '/kepek/orange_hallucination/oh2.png', 'Mountains, in the style of pictorial fabrics, cutouts, illuminated visions, light orange and light green, chinapunk, collage, iconic album covers, colorful moebius, storybook illustrations. ', 'clu1nhihu000hw2qs603maryw');
 
+-- 62
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Orange Hallucination Flower', TIMESTAMP '2024-04-26 23:18:00', '/kepek/orange_hallucination/oh3.png', 'Flower, in the style of pictorial fabrics, cutouts, illuminated visions, light orange and light green, chinapunk, collage, iconic album covers, colorful moebius, storybook illustrations. ', 'clu1nhihu000hw2qs603maryw');
 
+-- 63
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Orange Hallucination Boat', TIMESTAMP '2024-04-26 23:19:00', '/kepek/orange_hallucination/oh4.png', 'Boat, in the style of pictorial fabrics, cutouts, illuminated visions, light orange and light green, chinapunk, collage, iconic album covers, colorful moebius, storybook illustrations', 'clu1nhihu000hw2qs603maryw');
 
+-- 64
 INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID) 
 VALUES ('Orange Hallucination Candle', TIMESTAMP '2024-04-26 23:20:00', '/kepek/orange_hallucination/oh5.png', 'Candlelight, in the style of pictorial fabrics, cutouts, illuminated visions, light orange and light green, chinapunk, collage, iconic album covers, colorful moebius, storybook illustrations', 'clu1nhihu000hw2qs603maryw');
 
@@ -524,6 +570,71 @@ INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1n57ha000aw2qs7omkap3
 INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1n5vt5000bw2qsf3im1w0d', 2);
 INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1n6gxy000cw2qs894b1f9i', 3);
 INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1n6wrb000dw2qs99rb77q2', 4);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1ms2hi0001w2qs22s3exln', 1);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('cltboudsd0000w9421jnfdsqt', 1);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1njqif000lw2qsgba33q32', 1);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1mtn2b0004w2qsfwi94glo', 1);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1mjbl20000w2qsgpei6a2q', 1);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1ms2hi0001w2qs22s3exln', 25);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('cltboudsd0000w9421jnfdsqt', 25);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1njqif000lw2qsgba33q32', 25);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1mtn2b0004w2qsfwi94glo', 25);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1mjbl20000w2qsgpei6a2q', 25);
+
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1mr3240000w2qsf7z778qc', 59);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1ms2hi0001w2qs22s3exln', 59);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1msmab0002w2qsbidc12px', 59);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1mt2hw0003w2qs3e81078e', 59);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1mtn2b0004w2qsfwi94glo', 59);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1myhjs0005w2qs7sn21yl9', 59);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1mzax60006w2qsgi1o0hqs', 59);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1n3j2w0007w2qs4eqlbmxx', 59);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1n473v0008w2qs6xobb12e', 59);
+
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1mr3240000w2qsf7z778qc', 48);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1ms2hi0001w2qs22s3exln', 48);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1msmab0002w2qsbidc12px', 48);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1mt2hw0003w2qs3e81078e', 48);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1mtn2b0004w2qsfwi94glo', 48);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1myhjs0005w2qs7sn21yl9', 48);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1mzax60006w2qsgi1o0hqs', 48);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1n3j2w0007w2qs4eqlbmxx', 48);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1n473v0008w2qs6xobb12e', 48);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 48);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1nfivd000gw2qscsge0hpn', 48);
+INSERT INTO KepetLikeol (FelhasznaloID, KepID) VALUES ('clu1n863i000fw2qs82dicgme', 48);
+
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 1);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 2);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 3);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 4);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 5);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 6);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 7);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 8);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 9);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 10);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 11);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 12);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 13);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 14);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 15);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 16);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 17);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 18);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 19);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 20);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 21);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 22);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 23);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 24);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 25);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 26);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 27);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 28);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 29);
+INSERT INTO KEPETLIKEOL (FelhasznaloID, KepID) VALUES ('clu1nk78q000mw2qsgxj51ch5', 30);
+
 
 -- Kategoriak
 INSERT INTO Kategoria (Nev, Leiras) VALUES ('Soft Abstract 3D', '{subject}, in the style of conceptual minimalist sculpture, surrealistic juxtapositions, light white and light pink, realistic yet imaginative, i cant believe how beautiful this is, fine lines, delicate curves, playful cartoonish scenes, unreal engine');
@@ -531,7 +642,6 @@ INSERT INTO Kategoria (Nev, Leiras) VALUES ('Surrealist Comic', '{subject}, in t
 INSERT INTO Kategoria (Nev, Leiras) VALUES ('Vaporwave Illustration', 'a drawing of a {subject}, in the style of light pink and light aquamarine, grid work, vintage aesthetics, post-internet aesthetics');
 INSERT INTO Kategoria (Nev, Leiras) VALUES ('50s High Detail', '1950s vintage clipart retro {subject}, in the style of green and azure, realist portraiture, associated press photo, realist: lifelike accuracy');
 INSERT INTO Kategoria (Nev, Leiras) VALUES ('Retrossaince', 'a black drawing showing an ancient {subject}, in the style of light pink and light gray, animated gifs, greek art and architecture, vintage aesthetics, ocean academia, hand-drawn animation, marble');
--- INSERT INTO Kategoria (Nev, Leiras) VALUES ('Retro Futurism', '{subject}, in the style of retro-futuristic propaganda, frequent use of yellow, romanticized views, uncanny valley realism, die brücke, otherworldly visions, les automatistes --ar 2:1');
 INSERT INTO Kategoria (Nev, Leiras) VALUES ('80s Trance Poster', 'synth {subject} in the style of minimalist 80s trance poster illustration, neon, bold, color-blocked compositions, geometric, faded');
 INSERT INTO Kategoria (Nev, Leiras) VALUES ('Neo Futuristic', '{subject} in the style of neo futuristic, neon bright, illustrated, high tech, highly detail, bright colors, androids ');
 INSERT INTO Kategoria (Nev, Leiras) VALUES ('Vaporwave Neon', '{subject} in the style of vaporwave, a variety of light posters and blown up circles with ethereal outlines, grandiose ruins, vibrant hues master, gold and cyan, colorful gardens, resin, warped, studio photography, fashion photography');
@@ -539,6 +649,83 @@ INSERT INTO Kategoria (Nev, Leiras) VALUES ('Yellow Brutalism', '{subject}, in t
 INSERT INTO Kategoria (Nev, Leiras) VALUES ('Intrincate Psychedelic', '{subject} in the style of intricate psychedelic landscapes, flat illustrations, 2d game art, qajar art, forestpunk, high resolution, contemporary take on medieval art');
 INSERT INTO Kategoria (Nev, Leiras) VALUES ('Sci-fi Distopia', '{subject} in the style of sci-fi distopia, high contrast, hyper realistic, fantasy, bright colors');
 INSERT INTO Kategoria (Nev, Leiras) VALUES ('Orange Hallucination', '{subject}, in the style of pictorial fabrics, cutouts, illuminated visions, light orange and light green, chinapunk, collage, iconic album covers, colorful moebius, storybook illustrations');
+INSERT INTO Kategoria (Nev, Leiras) VALUES ('Hamburger', 'This is a hamburger :)'); --13
+INSERT INTO Kategoria (Nev, Leiras) VALUES ('Bike', 'This is a bike :)'); --14
+INSERT INTO Kategoria (Nev, Leiras) VALUES ('Cat', 'This is a cat :)'); --15
+INSERT INTO Kategoria (Nev, Leiras) VALUES ('City', 'This is a city :)'); --16
+INSERT INTO Kategoria (Nev, Leiras) VALUES ('Child', 'This is a child :)'); --17
+INSERT INTO Kategoria (Nev, Leiras) VALUES ('Surfer', 'This is a surfer :)'); --18
+INSERT INTO Kategoria (Nev, Leiras) VALUES ('Mountains', 'These are mountains :)'); --19
+INSERT INTO Kategoria (Nev, Leiras) VALUES ('Tree', 'This is a tree :)');    --20
+INSERT INTO Kategoria (Nev, Leiras) VALUES ('Flower', 'This is a flower :)'); --21
+INSERT INTO Kategoria (Nev, Leiras) VALUES ('Jungle', 'This is a jungle :)'); --22
+INSERT INTO Kategoria (Nev, Leiras) VALUES ('Bridge', 'This is a bridge :)'); --23
+INSERT INTO Kategoria (Nev, Leiras) VALUES ('Waterfall', 'This is a waterfall :)'); --24
+
+
+-- Hamburger
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (2, 13);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (6, 13);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (40, 13);
+
+-- Bike
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (7, 14);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (38, 14);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (47, 14);
+
+-- Cat
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (10, 15);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (42, 15);
+
+-- City
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (1, 16);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (9, 16);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (26, 16);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (49, 16);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (57, 16);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (60, 16);
+
+-- Child
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (8, 17);
+
+-- Surfer
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (4, 18);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (43, 18);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (48, 18);
+
+-- Mountains
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (3, 19);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (14, 19);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (35, 19);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (46, 19);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (58, 19);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (61, 19);
+
+-- Tree
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (5, 20);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (28, 20);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (41, 20);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (45, 20);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (52, 20);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (59, 20);
+
+-- Flower
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (44, 21);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (51, 21);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (62, 21);
+
+-- Jungle
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (11, 22);
+
+-- Bridge
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (12, 23);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (37, 23);
+
+-- Waterfall
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (13, 24);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (24, 24);
+INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (33, 24);
+
 
 
 -- Soft Abstract 3D
@@ -630,3 +817,130 @@ INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (63, 12);
 INSERT INTO Kategoriaja (KepID, KategoriaID) VALUES (64, 12);
 
 
+-- Procedures
+
+create or replace PROCEDURE frissit_kepet_es_kategoriat(
+    p_kep_id IN NUMBER,
+    p_cim IN VARCHAR2,
+    p_fajl_eleresi_utvonal IN VARCHAR2,
+    p_prompt IN VARCHAR2,
+    p_kategoria_ids IN VARCHAR2 
+) AS
+    v_kategoria_id NUMBER(10);
+    v_kategoria_ids_arr SYS.ODCINUMBERLIST;
+BEGIN
+    UPDATE Kep
+    SET Cim = p_cim,
+        Fajl_eleresi_utvonal = p_fajl_eleresi_utvonal,
+        Prompt = p_prompt
+    WHERE KepID = p_kep_id;
+  
+    DELETE FROM Kategoriaja
+    WHERE KepID = p_kep_id;
+
+    SELECT REGEXP_SUBSTR(p_kategoria_ids, '[^,]+', 1, LEVEL) BULK COLLECT INTO v_kategoria_ids_arr
+    FROM DUAL
+    CONNECT BY REGEXP_SUBSTR(p_kategoria_ids, '[^,]+', 1, LEVEL) IS NOT NULL;
+
+    FOR i IN 1..v_kategoria_ids_arr.COUNT LOOP
+        BEGIN
+            SELECT KategoriaID INTO v_kategoria_id
+            FROM Kategoria
+            WHERE KategoriaID = v_kategoria_ids_arr(i);
+
+            INSERT INTO Kategoriaja (KepID, KategoriaID)
+            VALUES (p_kep_id, v_kategoria_id);
+        EXCEPTION
+            WHEN NO_DATA_FOUND THEN
+                DBMS_OUTPUT.PUT_LINE('Nem található a megadott kategória ID: ' || v_kategoria_ids_arr(i));
+            WHEN OTHERS THEN
+                DBMS_OUTPUT.PUT_LINE('Hiba történt: ' || SQLERRM);
+        END;
+    END LOOP;
+
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DBMS_OUTPUT.PUT_LINE('Hiba történt: ' || SQLERRM);
+END;
+/
+
+
+create or replace PROCEDURE UploadKep(
+    p_title IN VARCHAR2,
+    p_kategoria IN VARCHAR2,
+    p_prompt IN VARCHAR2,
+    p_filename IN VARCHAR2,
+    p_email IN VARCHAR2
+) AS
+    v_kep_id NUMBER(10);
+    v_kategoria_ids_arr SYS.ODCINUMBERLIST;
+    v_kategoria_id NUMBER(10);
+BEGIN
+    INSERT INTO Kep (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, Prompt, FelhasznaloID)
+    VALUES (p_title, CURRENT_TIMESTAMP, p_filename, p_prompt, (SELECT FelhasznaloID FROM Felhasznalo WHERE Email = p_email))
+    RETURNING KepID INTO v_kep_id;
+
+    SELECT REGEXP_SUBSTR(p_kategoria, '[^,]+', 1, LEVEL) BULK COLLECT INTO v_kategoria_ids_arr
+    FROM DUAL
+    CONNECT BY REGEXP_SUBSTR(p_kategoria, '[^,]+', 1, LEVEL) IS NOT NULL;
+
+    FOR i IN 1..v_kategoria_ids_arr.COUNT LOOP
+        BEGIN
+            SELECT KategoriaID INTO v_kategoria_id
+            FROM Kategoria
+            WHERE KategoriaID = v_kategoria_ids_arr(i);
+
+            INSERT INTO Kategoriaja (KepID, KategoriaID)
+            VALUES (v_kep_id, v_kategoria_id);
+        EXCEPTION
+            WHEN NO_DATA_FOUND THEN
+                DBMS_OUTPUT.PUT_LINE('Nem található a megadott kategória ID: ' || v_kategoria_ids_arr(i));
+            WHEN OTHERS THEN
+                DBMS_OUTPUT.PUT_LINE('Hiba történt: ' || SQLERRM);
+        END;
+    END LOOP;
+
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DBMS_OUTPUT.PUT_LINE('Hiba történt: ' || SQLERRM);
+END;
+/
+
+
+-- Triggers
+create or replace TRIGGER moderacio_kommentek
+BEFORE INSERT ON KOMMENT
+FOR EACH ROW
+BEGIN
+   IF INSTR(UPPER(:NEW.tartalom), 'SZAR') > 0 THEN
+       :NEW.tartalom := REPLACE(UPPER(:NEW.tartalom), 'SZAR', '****');
+   END IF;
+
+
+   IF INSTR(UPPER(:NEW.tartalom), 'KURVA') > 0 THEN
+       :NEW.tartalom := REPLACE(UPPER(:NEW.tartalom), 'KURVA', '****');
+   END IF;
+END;
+/
+
+create or replace TRIGGER ellenorzes_duplikacio
+BEFORE INSERT ON KOMMENT
+FOR EACH ROW
+DECLARE
+   v_count INTEGER;
+BEGIN
+   SELECT COUNT(*)
+   INTO v_count
+   FROM KOMMENT
+   WHERE FELHASZNALOID = :NEW.FELHASZNALOID
+   AND KEPID = :NEW.KEPID
+   AND UPPER(tartalom) = UPPER(:NEW.tartalom);
+   IF v_count > 0 THEN
+       RAISE_APPLICATION_ERROR(-20001, 'Spam is not allowed in comments');
+   END IF;
+END;
+/

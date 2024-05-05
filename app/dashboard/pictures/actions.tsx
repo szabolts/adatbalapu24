@@ -25,35 +25,34 @@ const UpdateShema = z.object({
   title: z.string(),
   path: z.string(),
   prompt: z.string(),
-  kategoria: z.string(),
+  kategoria: z.array(z.string()),
 });
 
 export async function updatePictureById(id: string, formData: FormData) {
   const { title, path, prompt, kategoria } = UpdateShema.parse({
-    title: formData.get("title"),
-    path: formData.get("path"),
-    prompt: formData.get("prompt"),
-    kategoria: formData.get("kategoria"),
+      title: formData.get("title"),
+      path: formData.get("path"),
+      prompt: formData.get("prompt"),
+      kategoria: formData.getAll("kategoria"), 
   });
-
+  const kategoriaString = kategoria.join(','); 
+  console.log("Kategoriak in updatePictureById: ", kategoriaString);
   try {
-    const connection = await getConnection();
+      const connection = await getConnection();
 
-    // Felhasználó adatainak frissítése az adatbázisban
-    const result = await connection.execute(
-      `BEGIN frissit_kepet_es_kategoriat(:p_kep_id, :p_cim, :p_fajl_eleresi_utvonal, :p_prompt, :p_kategoria_nev); END;`,
-      [id, title, path, prompt, kategoria]
-      // { autoCommit: true }
-    );
+      const result = await connection.execute(
+          `BEGIN frissit_kepet_es_kategoriat(:p_kep_id, :p_cim, :p_fajl_eleresi_utvonal, :p_prompt, :p_kategoria_ids); END;`,
+          [id, title, path, prompt, kategoriaString]
+      );
 
-    console.log("Felhasználói adatok sikeresen frissítve:", result);
-    await connection.close();
-    console.log("Felhasználói adatok sikeresen frissítve.");
+      console.log("Felhasználói adatok sikeresen frissítve:", result);
+      await connection.close();
+      console.log("Felhasználói adatok sikeresen frissítve.");
   } catch (error) {
-    console.error(error);
-    return { message: "Hiba történt a felhasználói adatok frissítése során." };
+      console.error(error);
+      return { message: "Hiba történt a felhasználói adatok frissítése során." };
   }
-  revalidatePath("/dasboard/pictures");
+  revalidatePath("/dashboard/pictures");
   redirect("/dashboard/pictures");
 }
 

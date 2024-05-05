@@ -18,7 +18,7 @@ export async function fetchStats1() {
     );
 
     await connection.close();
-    console.log("fetchStats1", result.rows);
+    // console.log("fetchStats1", result.rows);
     return result.rows as Stat1[];
   } catch (error) {
     console.error("Failed to fetch category:", error);

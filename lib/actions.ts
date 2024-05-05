@@ -101,79 +101,43 @@ export async function createUser(formData: FormData) {
 
 const UploadSchema = z.object({
   image: z.any(),
-  // .refine((files) => {
-  //    return files?.[0]?.size <= MAX_UPLOAD_SIZE;
-  // }, `Max image size is 3MB.`)
-  // .refine(
-  //   (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
-  //   "Only .jpg, .jpeg, .png and .webp formats are supported."
-  // ),
   title: z.string(),
-  kategoria: z.string(),
+  kategoria: z.array(z.string()),
   prompt: z.string(),
 });
 
 export async function upload(formData: FormData) {
   const { title, kategoria, prompt, image } = UploadSchema.parse({
     title: formData.get("title"),
-    kategoria: formData.get("kategoria"),
+    kategoria: formData.getAll("kategoria"),
     prompt: formData.get("prompt"),
     image: formData.get("image"),
   });
-
-  const filename = image.name.replaceAll(" ", "_");
-  const path2 = `/kepek/${filename}`;
+  const kategoriaString = kategoria.join(','); 
+  const fileName = image.name.replaceAll(" ", "_");
+  const path2 = `/kepek/${fileName}`;
 
   try {
     const buffer = Buffer.from(await image.arrayBuffer());
     await writeFile(
-      path.join(process.cwd(), "/public/kepek/" + filename),
+      path.join(process.cwd(), "/public/kepek/" + fileName),
       buffer
     );
 
     const session = await auth();
     const connection = await getConnection();
 
-    const userID: any = await connection.execute(
-      `SELECT FelhasznaloID FROM Felhasznalo WHERE EMAIL = :email`,
-      [session?.user?.email]
-    );
-
-    const result: any = await connection.execute(
-      `SELECT KategoriaID FROM KATEGORIA WHERE Nev = :kategoria_nev`,
-      [kategoria]
-    );
-    const kategoriaID = result.rows[0]?.KATEGORIAID;
-
     await connection.execute(
-      `INSERT INTO KEP (Cim, Feltoltes_datum, Fajl_eleresi_utvonal, prompt, FelhasznaloID) 
-       VALUES (:cim, SYSDATE, :path, :prompt, :userid)`,
-      {
-        cim: title,
-        path: path2,
-        prompt: prompt,
-        userid: userID.rows[0]?.FELHASZNALOID,
-      },
-      { autoCommit: true }
-    );
-
-    const result2: any = await connection.execute(
-      `SELECT KepID FROM KEP WHERE Cim = :cim`,
-      [title]
-    );
-    const kepid = result2.rows[0]?.KEPID;
-
-    await connection.execute(
-      `INSERT INTO KATEGORIAJA (KepID, KategoriaID) 
-       VALUES (:kepid, :kategoriaid)`,
-      [kepid, kategoriaID],
-      { autoCommit: true }
+      `BEGIN 
+         UploadKep(:title, :kategoria, :prompt, :filename, :email); 
+       END;`,
+      [title, kategoriaString, prompt, path2, session?.user?.email],
+      
     );
 
     await connection.close();
 
-    console.log("Upload: ", title, prompt, filename);
-    console.log("Inserted KepID:", kepid);
+    console.log("Upload: ", title, prompt, path2);
 
   } catch (error) {
     console.error(error);
@@ -182,6 +146,7 @@ export async function upload(formData: FormData) {
   revalidatePath("/");
   redirect("/");
 }
+
 
 
 const UpdateShema = z.object({

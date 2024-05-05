@@ -1,5 +1,15 @@
 import oracledb from "oracledb";
-import { User, Kep, Kategoria, KategoriaEsElsoKep, TopLiked, TopUsersByUpload, TopUsersByReact, AvgLikesByCategories, KepKategoriak } from "./types";
+import {
+  User,
+  Kep,
+  Kategoria,
+  KategoriaEsElsoKep,
+  TopLiked,
+  TopUsersByUpload,
+  TopUsersByReact,
+  AvgLikesByCategories,
+  KepKategoriak,
+} from "./types";
 import { auth } from "@/auth";
 import { getConnection } from "@/lib/db";
 
@@ -317,7 +327,6 @@ export async function getTopLikedPictures() {
   }
 }
 
-
 export async function getTopUsersUpload() {
   try {
     const connection = await getConnection();
@@ -347,7 +356,6 @@ export async function getTopUsersUpload() {
     throw new Error("Failed to fetch top liked pictures.");
   }
 }
-
 
 export async function getTopUsersByReaction() {
   try {
@@ -394,7 +402,6 @@ export async function getTopUsersByReaction() {
     throw new Error("Failed to fetch top liked pictures.");
   }
 }
-
 
 export async function getAvgLikesByCategories() {
   try {
@@ -504,7 +511,6 @@ export async function getAbsoluteActivity() {
   }
 }
 
-
 export async function getBasicStats() {
   try {
     const connection = await getConnection();
@@ -521,6 +527,59 @@ export async function getBasicStats() {
     await connection.close();
     // console.log("Top liked pictures: ", topLikedPictures.rows);
     return basicStats.rows;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch top liked pictures.");
+  }
+}
+
+export async function getBestUserFrom2Weeks() {
+  try {
+    const connection = await getConnection();
+
+    const topUser2Week = await connection.execute(
+      `WITH Aktivitas AS (
+          SELECT F.Felhasznalonev, COUNT(*) AS osszes_muvelet
+          FROM Felhasznalo F
+          LEFT JOIN (
+              SELECT FelhasznaloID
+              FROM Kep
+              WHERE Feltoltes_datum >= TRUNC(SYSDATE, 'DDD') - 14
+              UNION ALL
+              SELECT FelhasznaloID
+              FROM Komment
+              WHERE Datum >= TRUNC(SYSDATE, 'DDD') - 14
+              UNION ALL
+              SELECT FelhasznaloID
+              FROM KommentetLikeol
+              WHERE FelhasznaloID IN (
+                  SELECT FelhasznaloID
+                  FROM Komment
+                  WHERE Datum >= TRUNC(SYSDATE, 'DDD') - 14
+              )
+              UNION ALL
+              SELECT FelhasznaloID
+              FROM KepetLikeol
+              WHERE FelhasznaloID IN (
+                  SELECT FelhasznaloID
+                  FROM Kep
+                  WHERE Feltoltes_datum >= TRUNC(SYSDATE, 'DDD') - 14
+              )
+          ) A ON F.FelhasznaloID = A.FelhasznaloID
+          GROUP BY F.Felhasznalonev
+        )
+        SELECT Felhasznalonev, osszes_muvelet
+        FROM Aktivitas
+        WHERE osszes_muvelet = (
+            SELECT MAX(osszes_muvelet)
+            FROM Aktivitas
+        )`,
+      []
+    );
+
+    await connection.close();
+     console.log("Top liked pictures: ", topUser2Week.rows);
+    return topUser2Week.rows as TopUsersByReact[];
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch top liked pictures.");

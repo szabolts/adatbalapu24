@@ -7,7 +7,8 @@ import { TopUsersReact } from "@/components/ui/overview/top-users-react";
 import { AvgLikesCategory } from "@/components/ui/overview/avg-likes-category";
 import { AbsoluteActivity } from "@/components/ui/overview/absolute-activity";
 import { DataCard } from "@/components/ui/overview/data-card";
-import { getTopLikedPictures, getTopUsersUpload, getTopUsersByReaction, getAvgLikesByCategories, getAvgPicByCategory, getAbsoluteActivity, getBasicStats } from "@/lib/data";
+import { BestTwoWeeks } from "@/components/ui/overview/best-two-weeks";
+import { getBestUserFrom2Weeks, getTopLikedPictures, getTopUsersUpload, getTopUsersByReaction, getAvgLikesByCategories, getAvgPicByCategory, getAbsoluteActivity, getBasicStats } from "@/lib/data";
 
 export default async function DashboardPage() {
   const data = await fetchStats1();
@@ -18,6 +19,7 @@ export default async function DashboardPage() {
   const avgPicByCategory: any = await getAvgPicByCategory();
   const absAct = await getAbsoluteActivity();
   const basicStats: any = await getBasicStats();
+  const bestUser:any = await getBestUserFrom2Weeks();
   console.log("basicStats", basicStats);
   // console.log("absAct", absAct);
   // console.log("avgPicByCategory", avgPicByCategory);
@@ -31,7 +33,7 @@ export default async function DashboardPage() {
         <DataCard title="Avg. pic by category" data={(avgPicByCategory[0].ATLAGOS_KEPEK_SZAMA).toFixed(2)} />
         <DataCard title="Nr. of pictures" data={basicStats[0].KEPSZAM} />
         <DataCard title="Nr. of categories" data={basicStats[0].KATEGORIASZAM} />
-        <DataCard title="Nr. of users" data={basicStats[0].FELHASZNALOSZAM} />
+        <BestTwoWeeks title="Top user of last 2 weeks" data={bestUser[0].FELHASZNALONEV} />
       </div>
       <TopLikes data={toplikes} />
       <TopUsersUpload data={topusers} />
